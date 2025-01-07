@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import CheckoutPopup from './CheckoutPopup -';
+import CheckoutPopup from './CheckoutPopup';
 import { useCart } from '../context/CartContext';
 import { HiOutlineTrash, HiOutlineMinusCircle } from 'react-icons/hi';
 import { MdShoppingCart } from 'react-icons/md';
