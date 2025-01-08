@@ -2,17 +2,16 @@ import { useState, useEffect } from 'react';
 import { HiOutlineTrash, HiOutlineMinusCircle } from 'react-icons/hi';
 import { MdShoppingCart } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import CheckoutPopup from './CheckoutPopup';
-import { useCart } from '../context/CartContext';
+import CheckoutPopup from './CheckoutPopup'; // Import CheckoutPopup
+import { useCart } from '../context/useCart'; // Updated import for useCart hook
 
 const CartList = () => {
     const { cartItems, getTotalPrice, removeFromCart, decrementQuantity } = useCart();
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-    // Debug: Log cart items
     useEffect(() => {
         console.log('Cart items:', cartItems);
-    }, [cartItems]);
+    }, [cartItems]); 
 
     return (
         <>
