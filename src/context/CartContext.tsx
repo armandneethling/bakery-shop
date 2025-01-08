@@ -24,18 +24,21 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
     const addToCart = (item: CartItem) => {
+        console.log('Adding item to cart:', item);
         setCartItems((prev) => {
             const existingItem = prev.find((cartItem) => cartItem.id === item.id);
             if (existingItem) {
+                console.log('Item already in cart, updating quantity.');
                 return prev.map((cartItem) =>
                     cartItem.id === item.id
-                        ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+                        ? { ...cartItem, quantity: cartItem.quantity + 1 }
                         : cartItem
                 );
             }
-            return [...prev, { ...item, quantity: item.quantity }];
+            console.log('New item, adding to cart.');
+            return [...prev, { ...item, quantity: 1 }];
         });
-    };    
+    };       
 
     const removeFromCart = (id: number) => {
         setCartItems((prev) => prev.filter(item => item.id !== id));

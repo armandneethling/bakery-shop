@@ -4,12 +4,46 @@ import { motion } from 'framer-motion';
 import { HiOutlineShoppingCart } from 'react-icons/hi';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
-
-const handleAddToCart = (productId: number) => {
-    console.log(`Product with id ${productId} added to cart`);
-};
+import { useCart } from '../context/CartContext';
 
 const Product = () => {
+    const { addToCart } = useCart();
+
+    const handleAddToCart = (productId: number) => {
+        const product = products.find(p => p.id === productId);
+        if (product) {
+            console.log(`Product with id ${productId} added to cart`);
+            addToCart({ ...product, quantity: 1 });
+        }
+    };
+
+    const products = [
+        {
+            id: 1,
+            name: "Buttermilk Rusks with Nuts&Seeds",
+            price: 20.0,
+            imageUrl: "/src/assets/images/nuts-seeds-buttermilk.png",
+        },
+        {
+            id: 2,
+            name: "Buttermilk Rusks with Macadamias",
+            price: 15.0,
+            imageUrl: "/src/assets/images/macadamias-buttermilk.png",
+        },
+        {
+            id: 3,
+            name: "Buttermilk Rusks Plain",
+            price: 25.0,
+            imageUrl: "/src/assets/images/plain-buttermilk.png",
+        },
+        {
+            id: 4,
+            name: "Buttermilk Rusks with Cranberries",
+            price: 18.0,
+            imageUrl: "/src/assets/images/cranberries-buttermilk.png",
+        },
+    ];
+
     return (
         <div className="relative h-auto overflow-auto p-4 product-page-container">
             <div

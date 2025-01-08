@@ -13,6 +13,11 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
+    const handleAddToCart = () => {
+        console.log('Adding product to cart:', product);
+        onAddToCart(product.id);
+    };
+
     return (
         <div className="product-card bg-white rounded-lg shadow-lg overflow-hidden transition transform hover:scale-105 duration-300">
             <div className="image-container">
@@ -21,7 +26,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
             <div className="p-4">
                 <h3 className="product-name text-xl font-semibold">{product.name}</h3>
                 <p className="product-price text-gray-700">R{product.price}</p>
-                <button className="btn btn-primary mt-4" onClick={() => onAddToCart(product.id)}>Add to Cart</button>
+                <button className="btn btn-primary mt-4" onClick={handleAddToCart}>Add to Cart</button>
             </div>
         </div>
     );
