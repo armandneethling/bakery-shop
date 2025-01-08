@@ -1,4 +1,6 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
+dotenv.config();
 
 interface EmailDetails {
     email: string;
@@ -12,7 +14,7 @@ interface EmailDetails {
 }
 
 const sendEmail = async (emailDetails: EmailDetails): Promise<void> => {
-    const apiKey = 'xkeysib-39e7dec35a1d361cf272ed61930d2177fb04d6410459dbfcaaac37d89857aa53'; // Your API key
+    const apiKey = process.env.SENDINBLUE_API_KEY;
     const url = 'https://api.sendinblue.com/v3/smtp/email';
     const headers = {
         'Content-Type': 'application/json',
