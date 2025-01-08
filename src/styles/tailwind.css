@@ -1,0 +1,308 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bakery-pink: #F8D3D3;
+  --bakery-brown: #7B4B3A;
+  --bakery-cream: #F5E5D7;
+  --bakery-yellow: #F9EBAE;
+  --red-purple: #ec0c74;
+  --jasmine: #f9da86;
+  --brown-chocolate: #641728;
+  --dirt: #9e7755;
+  --pastel-gray: #d8cfbd;
+  --van-dyke-brown: #6a4234;
+  --bakery-brown-custom: #BF8654;
+  --rose-taupe: #965C5B;
+  --misty-moss: #B0B980;
+  --alabaster: #F4EDE7;
+  --sunray: #E4AC4F;
+  --warm-cream: #fff4e6;
+  --beige-brown: #be9b7b;
+  --dark-brown: #854442;
+  --deep-brown: #5e4134;
+  --darker-brown: #3c2f2f;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  background-color: var(--bakery-cream);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.welcome-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  margin: 0;
+}
+
+.footer {
+  @apply bg-bakery-pink text-bakery-brown py-4 px-6 flex justify-between items-center shadow-lg;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 50;
+}
+
+.footer .footer-links a {
+  @apply text-bakery-brown hover:text-bakery-yellow transition duration-300;
+}
+
+/* Custom Toast Styles */
+.toast-container .Toastify__toast {
+  @apply bg-bakery-yellow text-bakery-brown border-l-4 border-bakery-brown p-4 rounded-lg shadow-lg;
+}
+
+.toast-container .Toastify__toast--success {
+  @apply bg-green-500 text-white;
+}
+
+.toast-container .Toastify__toast--error {
+  @apply bg-red-500 text-white;
+}
+
+/* Button Styles */
+.btn {
+  @apply py-2 px-4 rounded transition duration-300 flex items-center;
+}
+
+.btn-primary {
+  @apply bg-bakery-yellow text-bakery-brown hover:bg-yellow-300;
+}
+
+.btn-danger {
+  @apply bg-red-400 text-white hover:bg-red-500 hover:shadow-lg;
+}
+
+.btn-outline {
+  @apply border border-bakery-brown text-bakery-brown bg-transparent hover:bg-bakery-brown hover:text-white;
+}
+
+.btn-pill {
+  @apply bg-bakery-yellow text-bakery-brown py-2 px-6 rounded-full hover:bg-yellow-300;
+}
+
+.btn-bordered {
+  @apply border border-bakery-yellow text-bakery-yellow bg-transparent hover:bg-bakery-yellow hover:text-white;
+}
+
+.btn-disabled {
+  @apply bg-gray-400 text-white opacity-50 cursor-not-allowed;
+}
+
+.btn-elevated {
+  @apply bg-white text-gray-800 border border-gray-400 rounded shadow hover:shadow-lg transition-shadow;
+}
+
+.btn-icon {
+  @apply inline-flex items-center justify-center py-2 px-4 rounded transition duration-300;
+}
+
+.btn-icon-success {
+  @apply bg-green-500 text-white hover:bg-green-600;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(15px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-bounceIn {
+  animation: bounceIn 1s ease forwards;
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, .8), 0 0 10px rgba(255, 255, 255, .6), 0 0 15px rgba(255, 255, 255, .4);
+    color: var(--bakery-yellow);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, .8), 0 0 20px rgba(255, 255, 255, .6), 0 0 30px rgba(255, 255, 255, .4);
+    color: white;
+  }
+  to {
+    text-shadow: none;
+    color: white;
+  }
+}
+
+.animate-glow {
+  animation-name: glow;
+  animation-duration: .5s;
+  animation-iteration-count: infinite;
+}
+
+/* SimpleBar Custom Styles */
+.simplebar-scrollbar::before {
+  background-color: var(--bakery-brown);
+}
+
+.simplebar-track {
+  background: var(--bakery-cream);
+  border-radius: 10px;
+}
+
+/* Additional Welcome Message Styles */
+.welcome-message-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 40px 20px;
+  border-radius: 15px;
+  background: linear-gradient(to right, var(--bakery-yellow), var(--bakery-cream));
+}
+
+/* Product Page Styles */
+.product-page-container {
+  @apply pt-36;
+}
+
+.page-bottom-padding {
+  @apply mb-32;
+}
+
+.product-card {
+  @apply bg-white rounded-lg shadow-lg overflow-hidden transition transform hover:scale-105 duration-300;
+}
+
+.image-container {
+  @apply w-full h-48 overflow-hidden;
+}
+
+.product-image {
+  @apply w-full h-full object-cover;
+}
+
+.quantity-input {
+  @apply border border-gray-300 rounded px-2 py-1 text-center w-16;
+}
+
+.order-cake-section {
+  @apply mt-4 p-6 bg-white/80 rounded-lg shadow-md mx-auto w-full max-w-3;
+}
+
+/* Header Styles */
+.header-container {
+  @apply bg-bakery-pink p-4 flex justify-between items-center shadow-md fixed top-0 w-full z-50;
+  background: linear-gradient(to right, var(--bakery-pink), var(--bakery-cream));
+  border-bottom: 1px solid var(--bakery-brown);
+}
+
+.header-logo {
+  @apply h-14;
+}
+
+.header-nav {
+  @apply space-x-6;
+}
+
+.header-nav a {
+  @apply text-bakery-brown hover:text-bakery-yellow transition duration-300 text-lg font-medium;
+}
+
+.header-nav a:hover {
+  @apply underline;
+}
+
+/* Empty Cart Styles */
+.empty-cart-message {
+  @apply text-center text-gray-700 text-2xl font-semibold mt-10 p-6 bg-white/80 rounded-lg shadow-md mx-auto max-w-md transition-all duration-300 ease-in-out transform hover:scale-105;
+  background: linear-gradient(to right, var(--bakery-cream), var(--bakery-yellow));
+}
+
+.empty-cart-icon {
+  @apply text-4xl text-bakery-brown mb-4 transition-colors duration-300;
+}
+
+.empty-cart-message p {
+  @apply text-base text-gray-500 mb-4 transition-opacity duration-300;
+}
+
+.empty-cart-button {
+  @apply bg-bakery-yellow text-bakery-brown py-2 px-4 rounded-full hover:bg-yellow-300 transition duration-300 transform hover:scale-105 inline-flex items-center justify-center space-x-2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Cart Page Styles */
+.cart-page-container {
+  @apply pt-32;
+}
+
+.cart-list-container {
+  @apply container mx-auto p-4;
+}
+
+.cart-header {
+  @apply text-3xl font-semibold text-bakery-brown mb-6;
+}
+
+.cart-item {
+  @apply flex justify-between items-center border p-4 mb-4 rounded-lg shadow-lg bg-white;
+}
+
+.cart-item-image {
+  @apply w-24 h-24 object-cover rounded-lg;
+}
+
+.cart-item-details {
+  @apply text-lg font-bold text-bakery-brown;
+}
+
+.cart-item-price {
+  @apply text-base text-gray-700;
+}
+
+.cart-item-quantity {
+  @apply text-base text-gray-700;
+}
+
+.cart-item-buttons {
+  @apply flex space-x-2;
+}
+
+.cart-item-button {
+  @apply btn btn-danger flex items-center justify-center p-2 rounded-full bg-red-500 hover:bg-red-600 text-white transition duration-300;
+}
+
+.cart-total-price {
+  @apply text-2xl font-bold mt-6 text-center text-bakery-brown;
+}
+
+.cart-checkout-button {
+  @apply mt-6 text-center btn btn-primary py-2 px-4 bg-bakery-yellow text-bakery-brown rounded-lg hover:bg-yellow-300 transition-colors duration-300;
+}
