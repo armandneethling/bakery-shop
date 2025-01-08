@@ -48,7 +48,7 @@ const Product = () => {
         <div className="relative h-auto overflow-auto p-4 product-page-container">
             <div
                 className="absolute top-0 left-0 h-full w-full bg-cover bg-center bg-no-repeat filter blur-md"
-                style={{ backgroundImage: `url('/src/assets/images/bakery-bg2.jpg')` }}
+                style={{ backgroundImage: `url('/src/assets/images/bakery-bg.jpg')` }}
             >
                 <div className="absolute top-0 left-0 h-full w-full bg-black opacity-40"></div>
             </div>

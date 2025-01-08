@@ -242,7 +242,7 @@ body {
 }
 
 .header-logo {
-  @apply h-14;
+  @apply rounded-full h-14 w-14 object-cover;
 }
 
 .header-nav {
