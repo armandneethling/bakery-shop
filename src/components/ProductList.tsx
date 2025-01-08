@@ -6,25 +6,25 @@ const products = [
     id: 1,
     name: "Buttermilk Rusks with Nuts&Seeds",
     price: 20.0,
-    imageUrl: "",
+    imageUrl: "/src/assets/images/nuts-seeds-buttermilk.png",
   },
   {
     id: 2,
     name: "Buttermilk Rusks with Macadamias",
     price: 15.0,
-    imageUrl: "",
+    imageUrl: "/src/assets/images/macadamias-buttermilk.png",
   },
   {
     id: 3,
     name: "Buttermilk Rusks Plain",
     price: 25.0,
-    imageUrl: "/src/assets/images/chocolate-cake.jpg",
+    imageUrl: "/src/assets/images/plain-buttermilk.png",
   },
   {
     id: 4,
     name: "Buttermilk Rusks with Cranberries",
     price: 18.0,
-    imageUrl: "",
+    imageUrl: "/src/assets/images/cranberries-buttermilk.png",
   },
 ];
 

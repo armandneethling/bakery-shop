@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { HiOutlineShoppingCart } from 'react-icons/hi';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
-import Footer from '../components/Footer';
 
 const handleAddToCart = (productId: number) => {
     console.log(`Product with id ${productId} added to cart`);
@@ -19,7 +18,7 @@ const Product = () => {
             >
                 <div className="absolute top-0 left-0 h-full w-full bg-black opacity-40"></div>
             </div>
-            <div className="relative z-10 flex flex-col space-y-4">
+            <div className="relative z-10 flex flex-col space-y-4 product-pag">
                 <motion.div
                     className="product-container mx-auto p-6 bg-white/80 rounded-lg shadow-lg hover:shadow-xl w-full max-w-7xl transition-shadow duration-300 overflow-hidden"
                     initial={{ opacity: 0, y: -20 }}
@@ -55,9 +54,7 @@ const Product = () => {
                         </motion.button>
                     </Link>
                 </motion.div>
-                <div className="page-bottom-padding"></div>
             </div>
-            <Footer />
         </div>
     );
 };

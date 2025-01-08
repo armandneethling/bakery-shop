@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState } from 'react';
 
 interface CartItem {
@@ -34,7 +35,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             }
             return [...prev, { ...item, quantity: item.quantity }];
         });
-    };
+    };    
 
     const removeFromCart = (id: number) => {
         setCartItems((prev) => prev.filter(item => item.id !== id));
@@ -49,6 +50,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             ).filter((cartItem) => cartItem.quantity > 0);
         });
     };
+
     const clearCart = () => {
         setCartItems([]);
     };
@@ -64,7 +66,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     );
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const useCart = () => {
     const context = useContext(CartContext);
     if (!context) {
