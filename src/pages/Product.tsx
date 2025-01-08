@@ -6,6 +6,10 @@ import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import Footer from '../components/Footer';
 
+const handleAddToCart = (productId: number) => {
+    console.log(`Product with id ${productId} added to cart`);
+};
+
 const Product = () => {
     return (
         <div className="relative h-auto overflow-auto p-4 product-page-container">
@@ -25,7 +29,7 @@ const Product = () => {
                     <h2 className="text-4xl font-semibold text-bakery-brown mb-8">Our Products</h2>
                     <SimpleBar style={{ maxHeight: 'calc(100% - 60px)' }}>
                         <div className="p-4">
-                            <ProductList />
+                            <ProductList onAddToCart={handleAddToCart} />
                         </div>
                     </SimpleBar>
                 </motion.div>
