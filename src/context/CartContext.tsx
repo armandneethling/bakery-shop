@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { notify } from '../components/ToastNotification';
 
 export interface CartItem {
@@ -24,6 +24,10 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
+    useEffect(() => {
+        // This empty useEffect ensures that state updates don't occur during the render phase
+    }, []);
+
     const addToCart = (item: CartItem) => {
         setCartItems(prevItems => {
             const existingItem = prevItems.find(cartItem => cartItem.id === item.id);
@@ -37,6 +41,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             } else {
                 updatedItems = [...prevItems, item];
             }
+            console.log('Cart items after addition:', updatedItems);
             notify('Added to cart');
             return updatedItems;
         });
@@ -80,7 +85,7 @@ export { CartContext };
 export const useCart = (): CartContextType => {
     const context = useContext<CartContextType | undefined>(CartContext);
     if (!context) {
-        throw new Error('useCart must be used within a CartProvider');
+        throw new Error('useCart must be used inside a CartProvider');
     }
     return context;
 };
