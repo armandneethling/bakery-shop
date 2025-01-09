@@ -12,12 +12,33 @@ const CheckoutPopup: React.FC<CheckoutPopupProps> = ({ onClose }) => {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+
+    const validateEmail = (email: string) => {
+        const re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    };
+
+    const validatePhone = (phone: string) => {
+        const re = /^\d{10}$/; // Adjust as needed for your phone format
+        return re.test(phone);
+    };
 
     const handleCheckout = async (e: React.FormEvent) => {
         e.preventDefault();
 
         if (!name || !phone || !email) {
             notify("Please fill in all fields.");
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            notify("Please enter a valid email address.");
+            return;
+        }
+
+        if (!validatePhone(phone)) {
+            notify("Please enter a valid phone number.");
             return;
         }
 
@@ -30,10 +51,11 @@ const CheckoutPopup: React.FC<CheckoutPopupProps> = ({ onClose }) => {
 
         console.log("Email details:", emailDetails);
 
+        setIsLoading(true);
+
         try {
             await sendEmail(emailDetails);
             notify("Thank you for your purchase! An email confirmation has been sent.");
-
             clearCart();
             setName('');
             setPhone('');
@@ -42,6 +64,8 @@ const CheckoutPopup: React.FC<CheckoutPopupProps> = ({ onClose }) => {
         } catch (error) {
             notify("There was an issue sending the confirmation email. Please try again.");
             console.error("Email sending error:", error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -82,13 +106,11 @@ const CheckoutPopup: React.FC<CheckoutPopupProps> = ({ onClose }) => {
                     </div>
                     <div className="flex items-center justify-between">
                         <button 
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                handleCheckout(e);
-                            }}
-                            type="submit" className="bg-bakery-yellow hover:bg-yellow-300 text-bakery-brown font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            type="submit" 
+                            className="bg-bakery-yellow hover:bg-yellow-300 text-bakery-brown font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            disabled={isLoading}
                         >
-                            Complete Checkout
+                            {isLoading ? 'Sending...' : 'Complete Checkout'}
                         </button>
                         <button 
                             onClick={onClose} 

@@ -1,25 +1,30 @@
+import { useCart, CartItem } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 import ProductList from '../components/ProductList';
 import { motion } from 'framer-motion';
 import { HiOutlineShoppingCart } from 'react-icons/hi';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
-import Footer from '../components/Footer';
-
-const handleAddToCart = (productId: number) => {
-    console.log(`Product with id ${productId} added to cart`);
-};
+import ToastNotification from '../components/ToastNotification';
 
 const Product = () => {
+    const { addToCart } = useCart();
+
+    const handleAddToCart = (product: { id: number; name: string; price: number; imageUrl: string }) => {
+        const item: CartItem = { ...product, quantity: 1 };
+        addToCart(item);
+    };
+
     return (
         <div className="relative h-auto overflow-auto p-4 product-page-container">
+            <ToastNotification />
             <div
                 className="absolute top-0 left-0 h-full w-full bg-cover bg-center bg-no-repeat filter blur-md"
-                style={{ backgroundImage: `url('/src/assets/images/bakery-bg2.jpg')` }}
+                style={{ backgroundImage: `url('/src/assets/images/bakery-bg.jpg')` }}
             >
                 <div className="absolute top-0 left-0 h-full w-full bg-black opacity-40"></div>
             </div>
-            <div className="relative z-10 flex flex-col space-y-4">
+            <div className="relative z-10 flex flex-col space-y-4 product-pag">
                 <motion.div
                     className="product-container mx-auto p-6 bg-white/80 rounded-lg shadow-lg hover:shadow-xl w-full max-w-7xl transition-shadow duration-300 overflow-hidden"
                     initial={{ opacity: 0, y: -20 }}
@@ -55,9 +60,7 @@ const Product = () => {
                         </motion.button>
                     </Link>
                 </motion.div>
-                <div className="page-bottom-padding"></div>
             </div>
-            <Footer />
         </div>
     );
 };

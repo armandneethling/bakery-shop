@@ -1,4 +1,4 @@
-import React from 'react';
+import { CartItem } from '../context/CartContext';
 
 interface Product {
     id: number;
@@ -9,17 +9,24 @@ interface Product {
 
 interface ProductCardProps {
     product: Product;
-    onAddToCart: (productId: number) => void;
+    onAddToCart: (item: CartItem) => void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
+    const handleAddToCart = () => {
+        const item: CartItem = { ...product, quantity: 1 };
+        onAddToCart(item);
+    };
+
     return (
         <div className="product-card bg-white rounded-lg shadow-lg overflow-hidden transition transform hover:scale-105 duration-300">
-            <img src={product.imageUrl} alt={product.name} className="product-image w-full h-48 object-cover" />
+            <div className="image-container">
+                <img src={product.imageUrl} alt={product.name} className="product-image w-full h-full object-cover" />
+            </div>
             <div className="p-4">
                 <h3 className="product-name text-xl font-semibold">{product.name}</h3>
                 <p className="product-price text-gray-700">R{product.price}</p>
-                <button className="btn btn-primary mt-4" onClick={() => onAddToCart(product.id)}>Add to Cart</button>
+                <button className="btn btn-primary mt-4" onClick={handleAddToCart}>Add to Cart</button>
             </div>
         </div>
     );
