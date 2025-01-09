@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState } from 'react';
-import { notify } from '../components/ToastNotification';
+import { notify } from '../components/ToastNotification'; // Ensure notify is imported
 
 export interface CartItem {  // Export CartItem
     id: number;
@@ -10,7 +10,7 @@ export interface CartItem {  // Export CartItem
     quantity: number;
 }
 
-export type CartContextType = { 
+export type CartContextType = {  // Use 'export type' for CartContextType
     cartItems: CartItem[];
     addToCart: (item: CartItem) => void;
     removeFromCart: (id: number) => void;
@@ -31,12 +31,13 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             if (existingItem) {
                 updatedItems = prevItems.map(cartItem =>
                     cartItem.id === item.id
-                        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+                        ? { ...cartItem, quantity: cartItem.quantity + item.quantity } // Update quantity
                         : cartItem
                 );
             } else {
-                updatedItems = [...prevItems, { ...item, quantity: 1 }];
+                updatedItems = [...prevItems, item];
             }
+            console.log('Cart items after addition:', updatedItems);
             notify('Added to cart');
             return updatedItems;
         });
@@ -48,14 +49,15 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
 
     const decrementQuantity = (id: number) => {
-        setCartItems(prevItems =>
-            prevItems.map(item =>
-                item.id === id && item.quantity > 1
+        setCartItems(prevItems => {
+            const updatedItems = prevItems.map(item =>
+                item.id === id
                     ? { ...item, quantity: item.quantity - 1 }
                     : item
-            )
-        );
-        notify('Item quantity decreased');
+            ).filter(item => item.quantity > 0); // Remove item if quantity reaches zero
+            notify('Item quantity decreased');
+            return updatedItems;
+        });
     };
 
     const clearCart = () => {
@@ -73,6 +75,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         </CartContext.Provider>
     );
 };
+
+export { CartContext }; // Ensure CartContext is exported
 
 export const useCart = (): CartContextType => {
     const context = useContext<CartContextType | undefined>(CartContext);

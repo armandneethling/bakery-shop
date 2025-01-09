@@ -6,7 +6,7 @@ import CheckoutPopup from './CheckoutPopup';
 import { useCart, CartItem } from '../context/CartContext';
 
 const CartList = () => {
-    const { cartItems, getTotalPrice, removeFromCart, decrementQuantity } = useCart();
+    const { cartItems, getTotalPrice, removeFromCart, decrementQuantity, clearCart } = useCart();
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     useEffect(() => {
@@ -26,7 +26,7 @@ const CartList = () => {
                                     <div>
                                         <h4 className="text-lg font-bold text-bakery-brown">{item.name}</h4>
                                         <p className="text-base text-gray-700">Price per unit: R{item.price.toFixed(2)}</p>
-                                        <p className="text-base text-gray-700">Quantity: {item.quantity}</p> {/* Ensure quantity is displayed */}
+                                        <p className="text-base text-gray-700">Quantity: {item.quantity}</p>
                                     </div>
                                 </div>
                                 <div className="flex space-x-2">
@@ -51,6 +51,12 @@ const CartList = () => {
                     <div className="mt-6 text-center">
                         <button onClick={() => setIsPopupOpen(true)} className="btn btn-primary py-2 px-4 bg-bakery-yellow text-bakery-brown rounded-lg hover:bg-yellow-300 transition-colors duration-300">
                             Proceed to Checkout
+                        </button>
+                    </div>
+
+                    <div className="mt-6 text-center">
+                        <button onClick={clearCart} className="btn btn-danger py-2 px-4 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-300">
+                            Clear Cart
                         </button>
                     </div>
 

@@ -5,7 +5,8 @@ import { HiOutlineShoppingCart } from 'react-icons/hi';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import { useCart } from '../context/CartContext';
-import ToastNotification from '../components/ToastNotification';
+import ToastNotification from '../components/ToastNotification'; // Import ToastNotification
+
 const Product = () => {
     const { addToCart } = useCart();
 
@@ -16,7 +17,7 @@ const Product = () => {
 
     return (
         <div className="relative h-auto overflow-auto p-4 product-page-container">
-            <ToastNotification /> {/* Ensure ToastNotification is included */}
+            <ToastNotification />
             <div
                 className="absolute top-0 left-0 h-full w-full bg-cover bg-center bg-no-repeat filter blur-md"
                 style={{ backgroundImage: `url('/src/assets/images/bakery-bg.jpg')` }}
