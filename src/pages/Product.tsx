@@ -4,15 +4,16 @@ import { motion } from 'framer-motion';
 import { HiOutlineShoppingCart } from 'react-icons/hi';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
-import { useCart } from '../context/CartContext';
-import ToastNotification from '../components/ToastNotification'; // Import ToastNotification
+import { useCart, CartItem } from '../context/CartContext';
+import ToastNotification from '../components/ToastNotification';
 
 const Product = () => {
     const { addToCart } = useCart();
 
-    const handleAddToCart = (product: { id: number; name: string; price: number; imageUrl: string }, quantity: number) => {
-        addToCart({ ...product, quantity });
-        console.log(`Product with id ${product.id} and quantity ${quantity} added to cart`);
+    const handleAddToCart = (product: { id: number; name: string; price: number; imageUrl: string }) => {
+        const item: CartItem = { ...product, quantity: 1 }; // Correctly include quantity
+        addToCart(item);
+        console.log(`Product with id ${product.id} added to cart`);
     };
 
     return (

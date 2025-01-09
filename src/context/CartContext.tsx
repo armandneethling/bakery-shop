@@ -1,8 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState } from 'react';
-import { notify } from '../components/ToastNotification'; // Ensure notify is imported
+import { notify } from '../components/ToastNotification';
 
-export interface CartItem {  // Export CartItem
+export interface CartItem {
     id: number;
     name: string;
     price: number;
@@ -10,12 +10,12 @@ export interface CartItem {  // Export CartItem
     quantity: number;
 }
 
-export type CartContextType = {  // Use 'export type' for CartContextType
+export type CartContextType = {
     cartItems: CartItem[];
     addToCart: (item: CartItem) => void;
     removeFromCart: (id: number) => void;
-    clearCart: () => void;
     decrementQuantity: (id: number) => void;
+    clearCart: () => void;
     getTotalPrice: () => number;
 };
 
@@ -31,7 +31,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             if (existingItem) {
                 updatedItems = prevItems.map(cartItem =>
                     cartItem.id === item.id
-                        ? { ...cartItem, quantity: cartItem.quantity + item.quantity } // Update quantity
+                        ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
                         : cartItem
                 );
             } else {
@@ -54,8 +54,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 item.id === id
                     ? { ...item, quantity: item.quantity - 1 }
                     : item
-            ).filter(item => item.quantity > 0); // Remove item if quantity reaches zero
-            notify('Item quantity decreased');
+            ).filter(item => item.quantity > 0);
+            notify(updatedItems.some(item => item.id === id) ? 'Item quantity decreased' : 'Item removed from cart');
             return updatedItems;
         });
     };
@@ -70,13 +70,13 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
 
     return (
-        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart, decrementQuantity, getTotalPrice }}>
+        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, decrementQuantity, clearCart, getTotalPrice }}>
             {children}
         </CartContext.Provider>
     );
 };
 
-export { CartContext }; // Ensure CartContext is exported
+export { CartContext };
 
 export const useCart = (): CartContextType => {
     const context = useContext<CartContextType | undefined>(CartContext);

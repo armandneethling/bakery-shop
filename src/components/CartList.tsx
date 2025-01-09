@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { HiOutlineTrash, HiOutlineMinusCircle } from 'react-icons/hi';
 import { MdShoppingCart } from 'react-icons/md';
 import { Link } from 'react-router-dom';
@@ -8,10 +8,6 @@ import { useCart, CartItem } from '../context/CartContext';
 const CartList = () => {
     const { cartItems, getTotalPrice, removeFromCart, decrementQuantity, clearCart } = useCart();
     const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-    useEffect(() => {
-        console.log('Cart items:', cartItems);
-    }, [cartItems]);
 
     return (
         <>
