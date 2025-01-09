@@ -1,7 +1,8 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState } from 'react';
-import { notify } from '../components/ToastNotification'; 
+import { notify } from '../components/ToastNotification';
 
-interface CartItem {
+export interface CartItem { 
     id: number;
     name: string;
     price: number;
@@ -9,14 +10,14 @@ interface CartItem {
     quantity: number;
 }
 
-interface CartContextType {
+export type CartContextType = {
     cartItems: CartItem[];
     addToCart: (item: Omit<CartItem, 'quantity'>) => void;
     removeFromCart: (id: number) => void;
     clearCart: () => void;
     decrementQuantity: (id: number) => void;
     getTotalPrice: () => number;
-}
+};
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
@@ -28,16 +29,16 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             const existingItem = prevItems.find(cartItem => cartItem.id === item.id);
             let updatedItems;
             if (existingItem) {
-                updatedItems = prevItems.map(cartItem =>
-                    cartItem.id === item.id
-                        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+                updatedItems = prevItems.map(cartItem => 
+                    cartItem.id === item.id 
+                        ? { ...cartItem, quantity: cartItem.quantity + 1 } 
                         : cartItem
                 );
             } else {
                 updatedItems = [...prevItems, { ...item, quantity: 1 }];
             }
             console.log('Cart items after addition:', updatedItems);
-            notify('Added to cart'); // Show toast notification
+            notify('Added to cart');
             return updatedItems;
         });
     };
@@ -49,9 +50,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     const decrementQuantity = (id: number) => {
         setCartItems(prevItems => 
-            prevItems.map(item =>
-                item.id === id && item.quantity > 1
-                    ? { ...item, quantity: item.quantity - 1 }
+            prevItems.map(item => 
+                item.id === id && item.quantity > 1 
+                    ? { ...item, quantity: item.quantity - 1 } 
                     : item
             )
         );
@@ -72,4 +73,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             {children}
         </CartContext.Provider>
     );
+};
+
+export { CartContext };
+
+export const useCart = (): CartContextType => {
+    const context = useContext<CartContextType | undefined>(CartContext);
+    if (!context) {
+        throw new Error('useCart must be used within a CartProvider');
+    }
+    return context;
 };

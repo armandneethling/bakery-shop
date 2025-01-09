@@ -3,7 +3,7 @@ import { HiOutlineTrash, HiOutlineMinusCircle } from 'react-icons/hi';
 import { MdShoppingCart } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import CheckoutPopup from './CheckoutPopup'; // Import CheckoutPopup
-import { useCart } from '../context/useCart'; // Updated import for useCart hook
+import { useCart, CartItem } from '../context/CartContext';  // Import useCart and CartItem from CartContext
 
 const CartList = () => {
     const { cartItems, getTotalPrice, removeFromCart, decrementQuantity } = useCart();
@@ -11,7 +11,7 @@ const CartList = () => {
 
     useEffect(() => {
         console.log('Cart items:', cartItems);
-    }, [cartItems]); 
+    }, [cartItems]);
 
     return (
         <>
@@ -19,7 +19,7 @@ const CartList = () => {
                 <div className="p-4">
                     <h3 className="text-3xl font-semibold mb-6 text-center text-bakery-brown">Your Cart Items</h3>
                     <ul>
-                        {cartItems.map(item => (
+                        {cartItems.map((item: CartItem) => (
                             <li key={item.id} className="flex justify-between items-center border p-4 mb-4 rounded-lg shadow-lg bg-white">
                                 <div className="flex items-center space-x-4">
                                     <img src={item.imageUrl} alt={item.name} className="w-24 h-24 object-cover rounded-lg" />
@@ -49,10 +49,7 @@ const CartList = () => {
                     <div className="text-2xl font-bold mt-6 text-center text-bakery-brown">Total Price: R{getTotalPrice().toFixed(2)}</div>
 
                     <div className="mt-6 text-center">
-                        <button 
-                            onClick={() => setIsPopupOpen(true)} 
-                            className="btn btn-primary py-2 px-4 bg-bakery-yellow text-bakery-brown rounded-lg hover:bg-yellow-300 transition-colors duration-300"
-                        >
+                        <button onClick={() => setIsPopupOpen(true)} className="btn btn-primary py-2 px-4 bg-bakery-yellow text-bakery-brown rounded-lg hover:bg-yellow-300 transition-colors duration-300">
                             Proceed to Checkout
                         </button>
                     </div>
