@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 interface Product {
     id: number;
@@ -13,10 +13,10 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
-    const [quantity, setQuantity] = useState(1); // State for quantity
+    const [quantity, setQuantity] = useState(1);
 
     const handleAddToCart = () => {
-        onAddToCart(product, quantity); // Pass the quantity
+        onAddToCart(product, quantity);
     };
 
     return (

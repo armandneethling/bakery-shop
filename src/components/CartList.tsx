@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { HiOutlineTrash, HiOutlineMinusCircle } from 'react-icons/hi';
 import { MdShoppingCart } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import CheckoutPopup from './CheckoutPopup'; // Import CheckoutPopup
-import { useCart, CartItem } from '../context/CartContext';  // Import useCart and CartItem from CartContext
+import CheckoutPopup from './CheckoutPopup';
+import { useCart, CartItem } from '../context/CartContext';
 
 const CartList = () => {
     const { cartItems, getTotalPrice, removeFromCart, decrementQuantity } = useCart();
@@ -26,7 +26,7 @@ const CartList = () => {
                                     <div>
                                         <h4 className="text-lg font-bold text-bakery-brown">{item.name}</h4>
                                         <p className="text-base text-gray-700">Price per unit: R{item.price.toFixed(2)}</p>
-                                        <p className="text-base text-gray-700">Quantity: {item.quantity}</p>
+                                        <p className="text-base text-gray-700">Quantity: {item.quantity}</p> {/* Ensure quantity is displayed */}
                                     </div>
                                 </div>
                                 <div className="flex space-x-2">

@@ -6,18 +6,17 @@ import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import { useCart } from '../context/CartContext';
 import ToastNotification from '../components/ToastNotification';
-
 const Product = () => {
     const { addToCart } = useCart();
 
     const handleAddToCart = (product: { id: number; name: string; price: number; imageUrl: string }, quantity: number) => {
-        console.log(`Product with id ${product.id} added to cart`);
         addToCart({ ...product, quantity });
+        console.log(`Product with id ${product.id} and quantity ${quantity} added to cart`);
     };
 
     return (
         <div className="relative h-auto overflow-auto p-4 product-page-container">
-            <ToastNotification />
+            <ToastNotification /> {/* Ensure ToastNotification is included */}
             <div
                 className="absolute top-0 left-0 h-full w-full bg-cover bg-center bg-no-repeat filter blur-md"
                 style={{ backgroundImage: `url('/src/assets/images/bakery-bg.jpg')` }}
