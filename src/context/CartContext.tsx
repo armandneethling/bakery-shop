@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useState } from 'react';
 import { notify } from '../components/ToastNotification';
 
-export interface CartItem { 
+export interface CartItem {  // Export CartItem
     id: number;
     name: string;
     price: number;
@@ -10,9 +10,9 @@ export interface CartItem {
     quantity: number;
 }
 
-export type CartContextType = {
+export type CartContextType = { 
     cartItems: CartItem[];
-    addToCart: (item: Omit<CartItem, 'quantity'>) => void;
+    addToCart: (item: CartItem) => void;
     removeFromCart: (id: number) => void;
     clearCart: () => void;
     decrementQuantity: (id: number) => void;
@@ -24,20 +24,19 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-    const addToCart = (item: Omit<CartItem, 'quantity'>) => {
+    const addToCart = (item: CartItem) => {
         setCartItems(prevItems => {
             const existingItem = prevItems.find(cartItem => cartItem.id === item.id);
             let updatedItems;
             if (existingItem) {
-                updatedItems = prevItems.map(cartItem => 
-                    cartItem.id === item.id 
-                        ? { ...cartItem, quantity: cartItem.quantity + 1 } 
+                updatedItems = prevItems.map(cartItem =>
+                    cartItem.id === item.id
+                        ? { ...cartItem, quantity: cartItem.quantity + 1 }
                         : cartItem
                 );
             } else {
                 updatedItems = [...prevItems, { ...item, quantity: 1 }];
             }
-            console.log('Cart items after addition:', updatedItems);
             notify('Added to cart');
             return updatedItems;
         });
@@ -49,10 +48,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
 
     const decrementQuantity = (id: number) => {
-        setCartItems(prevItems => 
-            prevItems.map(item => 
-                item.id === id && item.quantity > 1 
-                    ? { ...item, quantity: item.quantity - 1 } 
+        setCartItems(prevItems =>
+            prevItems.map(item =>
+                item.id === id && item.quantity > 1
+                    ? { ...item, quantity: item.quantity - 1 }
                     : item
             )
         );
@@ -74,8 +73,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         </CartContext.Provider>
     );
 };
-
-export { CartContext };
 
 export const useCart = (): CartContextType => {
     const context = useContext<CartContextType | undefined>(CartContext);

@@ -29,13 +29,19 @@ const products = [
 ];
 
 interface ProductListProps {
-    onAddToCart: (productId: number) => void;
+    onAddToCart: (product: { id: number; name: string; price: number; imageUrl: string }, quantity: number) => void;
 }
 
 const ProductList: React.FC<ProductListProps> = ({ onAddToCart }) => (
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
     {products.map((product) => (
-      <ProductCard key={product.id} product={product} onAddToCart={onAddToCart} />
+      <ProductCard 
+        key={product.id} 
+        product={product} 
+        onAddToCart={(product, quantity) => {
+          onAddToCart(product, quantity);
+        }} 
+      />
     ))}
   </div>
 );

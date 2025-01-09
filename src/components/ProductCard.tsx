@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface Product {
     id: number;
@@ -9,13 +9,14 @@ interface Product {
 
 interface ProductCardProps {
     product: Product;
-    onAddToCart: (productId: number) => void;
+    onAddToCart: (product: Product, quantity: number) => void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
+    const [quantity, setQuantity] = useState(1); // State for quantity
+
     const handleAddToCart = () => {
-        console.log('Adding product to cart:', product);
-        onAddToCart(product.id);
+        onAddToCart(product, quantity); // Pass the quantity
     };
 
     return (
@@ -26,6 +27,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
             <div className="p-4">
                 <h3 className="product-name text-xl font-semibold">{product.name}</h3>
                 <p className="product-price text-gray-700">R{product.price}</p>
+                <div className="quantity-container">
+                    <label htmlFor={`quantity-${product.id}`} className="text-gray-700">Quantity:</label>
+                    <input 
+                        type="number"
+                        id={`quantity-${product.id}`}
+                        value={quantity}
+                        onChange={(e) => setQuantity(parseInt(e.target.value, 10))}
+                        min="1"
+                        className="quantity-input border rounded p-1 w-16"
+                    />
+                </div>
                 <button className="btn btn-primary mt-4" onClick={handleAddToCart}>Add to Cart</button>
             </div>
         </div>
