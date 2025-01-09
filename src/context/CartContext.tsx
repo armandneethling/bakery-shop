@@ -37,7 +37,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             } else {
                 updatedItems = [...prevItems, item];
             }
-            console.log('Cart items after addition:', updatedItems);
             notify('Added to cart');
             return updatedItems;
         });

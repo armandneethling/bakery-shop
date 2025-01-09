@@ -9,7 +9,7 @@ interface Product {
 
 interface ProductCardProps {
     product: Product;
-    onAddToCart: (item: CartItem) => void; // Ensure CartItem is used
+    onAddToCart: (item: CartItem) => void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
