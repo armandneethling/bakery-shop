@@ -12,7 +12,7 @@ interface EmailDetails {
 }
 
 const sendEmail = async (emailDetails: EmailDetails): Promise<void> => {
-    const url = 'http://localhost:5000/api/send-email'; // Ensure this matches your server's port
+    const url = 'http://localhost:5000/api/send-email';
     const headers = {
         'Content-Type': 'application/json',
     };

@@ -5,10 +5,8 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-
 const cors = require('cors');
-// Add this line to allow requests from your client
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors());
 
 app.post('/api/send-email', async (req, res) => {
     const emailDetails = req.body;
@@ -33,13 +31,25 @@ app.post('/api/send-email', async (req, res) => {
         console.log('Email sent successfully:', response.data);
         res.status(200).send('Email sent successfully');
     } catch (err) {
-        console.error('Sending email failed:', {
-            message: err.message || 'Unknown error',
-            response: err.response ? err.response.data : 'No response data',
-            status: err.response ? err.response.status : 'No status code'
-        });
+        console.error('Error sending email:', err.response ? err.response.data : err.message);
         res.status(500).send('Error sending email');
     }
+});
+
+app.post('/api/receive-email', async (req, res) => {
+    const emailDetails = req.body;
+    console.log('Received customer email:', emailDetails);
+
+    if (!emailDetails.email || !emailDetails.subject || !emailDetails.htmlContent) {
+        console.error('Invalid email details:', emailDetails);
+        return res.status(400).send('Invalid email details');
+    }
+
+    console.log(`Email from: ${emailDetails.email}`);
+    console.log(`Subject: ${emailDetails.subject}`);
+    console.log(`Content: ${emailDetails.htmlContent}`);
+    
+    res.status(200).send('Email received successfully');
 });
 
 const PORT = process.env.PORT || 5000;
