@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { notify } from '../components/ToastNotification';
+import { sendCakeOrderEmail } from '../services/emailService'; // Import the email service
 
 const CakeOrderingForm = () => {
   const [customerName, setCustomerName] = useState('');
   const [contactNumber, setContactNumber] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
   const [additionalInfo, setAdditionalInfo] = useState('');
+  const [isLoading, setIsLoading] = useState(false);  // Track loading state
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     if (!customerName || !contactNumber || !customerEmail) {
@@ -15,11 +17,29 @@ const CakeOrderingForm = () => {
       return;
     }
 
-    notify('Your cake order has been submitted!');
-    setCustomerName('');
-    setContactNumber('');
-    setCustomerEmail('');
-    setAdditionalInfo('');
+    const emailDetails = {
+      email: customerEmail,
+      name: customerName,
+      phone: contactNumber,
+      orderDetails: [{ name: 'Cake', quantity: 1, price: 100 }], // Example order details with 'price' as number
+      total: '100', // Example total
+    };
+
+    setIsLoading(true);
+
+    try {
+      await sendCakeOrderEmail(emailDetails);
+      notify('Your cake order has been submitted!');
+      setCustomerName('');
+      setContactNumber('');
+      setCustomerEmail('');
+      setAdditionalInfo('');
+    } catch (error) {
+      notify('There was an issue submitting your cake order. Please try again.');
+      console.error('Cake order email error:', error);
+    } finally {
+      setIsLoading(false);  // Hide loading indicator
+    }
   };
 
   return (
@@ -79,8 +99,8 @@ const CakeOrderingForm = () => {
             className="border rounded w-full p-2"
           />
         </div>
-        <button type="submit" className="btn btn-primary">
-          Submit Order
+        <button type="submit" className="btn btn-primary" disabled={isLoading}>
+          {isLoading ? 'Submitting...' : 'Submit Order'}
         </button>
       </form>
     </div>

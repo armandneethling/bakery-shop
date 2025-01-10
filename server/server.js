@@ -49,6 +49,67 @@ app.post('/api/send-email', async (req, res) => {
     }
 });
 
+// Endpoint for Cake Ordering Form
+app.post('/api/send-cake-order-email', async (req, res) => {
+    const emailDetails = req.body;
+    console.log('Received cake order email details:', emailDetails);
+    
+    const apiKey = process.env.SENDINBLUE_API_KEY;
+    const url = 'https://api.sendinblue.com/v3/smtp/email';
+    const headers = {
+        'Content-Type': 'application/json',
+        'api-key': apiKey,
+    };
+    const body = {
+        to: [
+            { email: emailDetails.email, name: emailDetails.name }, // Client's email
+            { email: 'homebakedrusks@gmail.com', name: 'Your Bakery' } // Company's email
+        ],
+        sender: { email: 'homebakedrusks@gmail.com', name: 'Your Bakery' },
+        subject: 'Cake Order Confirmation',
+        htmlContent: `<p>Hello ${emailDetails.name},</p><p>Thank you for your cake order!</p><p>Order Details:</p><ul>${emailDetails.orderDetails.map(item => `<li>${item.name}: ${item.quantity} x R${item.price}</li>`).join('')}</ul><p>Total: R${emailDetails.total}</p>`,
+    };
+
+    try {
+        console.log('Sending cake order email with body:', body);
+        const response = await axios.post(url, body, { headers });
+        console.log('Cake order email sent successfully:', response.data);
+        res.status(200).send('Cake order email sent successfully');
+    } catch (err) {
+        console.error('Error sending cake order email:', err.response ? err.response.data : err.message);
+        res.status(500).send('Error sending cake order email');
+    }
+});
+
+// Endpoint for Contact Me Form
+app.post('/api/send-contact-email', async (req, res) => {
+    const emailDetails = req.body;
+    console.log('Received contact email details:', emailDetails);
+    
+    const apiKey = process.env.SENDINBLUE_API_KEY;
+    const url = 'https://api.sendinblue.com/v3/smtp/email';
+    const headers = {
+        'Content-Type': 'application/json',
+        'api-key': apiKey,
+    };
+    const body = {
+        to: [{ email: 'homebakedrusks@gmail.com', name: 'Your Bakery' }], // Only company's email
+        sender: { email: emailDetails.email, name: emailDetails.name }, // Client's email for reply-to
+        subject: 'New Contact Request',
+        htmlContent: `<p>Name: ${emailDetails.name}</p><p>Email: ${emailDetails.email}</p><p>Phone: ${emailDetails.phone}</p><p>Message:</p><p>${emailDetails.message}</p>`,
+    };
+
+    try {
+        console.log('Sending contact email with body:', body);
+        const response = await axios.post(url, body, { headers });
+        console.log('Contact email sent successfully:', response.data);
+        res.status(200).send('Contact email sent successfully');
+    } catch (err) {
+        console.error('Error sending contact email:', err.response ? err.response.data : err.message);
+        res.status(500).send('Error sending contact email');
+    }
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

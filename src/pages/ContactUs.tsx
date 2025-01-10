@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { notify } from '../components/ToastNotification';
+import { sendContactEmail } from '../services/emailService'; // Import the email service
 
 const ContactUs = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [message, setMessage] = useState('');
+    const [isLoading, setIsLoading] = useState(false);  // Track loading state
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         if (!name || !email || !phone || !message) {
@@ -15,14 +17,28 @@ const ContactUs = () => {
             return;
         }
 
-        // Send form data to the server or handle it accordingly
-        notify("Thank you for contacting us! We will get back to you soon.");
+        const emailDetails = {
+            email,
+            name,
+            phone,
+            message,
+        };
 
-        // Clear form fields
-        setName('');
-        setEmail('');
-        setPhone('');
-        setMessage('');
+        setIsLoading(true);
+
+        try {
+            await sendContactEmail(emailDetails);
+            notify("Thank you for contacting us! We will get back to you soon.");
+            setName('');
+            setEmail('');
+            setPhone('');
+            setMessage('');
+        } catch (error) {
+            notify("There was an issue submitting your request. Please try again.");
+            console.error('Contact email error:', error);
+        } finally {
+            setIsLoading(false);  // Hide loading indicator
+        }
     };
 
     return (
@@ -72,8 +88,9 @@ const ContactUs = () => {
                     <button 
                         type="submit" 
                         className="bg-bakery-yellow hover:bg-yellow-300 text-bakery-brown font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        disabled={isLoading}
                     >
-                        Send Message
+                        {isLoading ? 'Sending...' : 'Send Message'}
                     </button>
                 </div>
             </form>
