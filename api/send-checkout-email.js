@@ -11,6 +11,8 @@ module.exports = async (req, res) => {
     console.log('Received checkout email details:', emailDetails);
 
     const apiKey = process.env.SENDINBLUE_API_KEY;
+    console.log('Sendinblue API Key:', apiKey);
+    
     const url = 'https://api.sendinblue.com/v3/smtp/email';
     const headers = {
         'Content-Type': 'application/json',
