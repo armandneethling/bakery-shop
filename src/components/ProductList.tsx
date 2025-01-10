@@ -1,17 +1,12 @@
 import ProductCard from './ProductCard';
 import { CartItem } from '../context/CartContext';
 
-import nutsSeedsButtermilk from './assets/images/nuts-seeds-buttermilk.png';
-import macadamiasButtermilk from './assets/images/macadamias-buttermilk.png';
-import plainButtermilk from './assets/images/plain-buttermilk.png';
-import cranberriesButtermilk from './assets/images/cranberries-buttermilk.png';
-
 const products: CartItem[] = [
   {
     id: 1,
     name: "Buttermilk Rusks with Nuts & Seeds",
     price: 20.0,
-    imageUrl: nutsSeedsButtermilk,
+    imageUrl: "/images/nuts-seeds-buttermilk.png",
     quantity: 1,
     description: "Contains nuts and seeds",
     ingredients: "Flour, sugar, eggs, nuts, seeds, butter",
@@ -21,7 +16,7 @@ const products: CartItem[] = [
     id: 2,
     name: "Buttermilk Rusks with Macadamias",
     price: 15.0,
-    imageUrl: macadamiasButtermilk,
+    imageUrl: "/images/macadamias-buttermilk.png",
     quantity: 1,
     description: "Contains macadamias",
     ingredients: "Flour, sugar, eggs, macadamias, butter",
@@ -31,7 +26,7 @@ const products: CartItem[] = [
     id: 3,
     name: "Buttermilk Rusks Plain",
     price: 25.0,
-    imageUrl: plainButtermilk,
+    imageUrl: "/images/plain-buttermilk.png",
     quantity: 1,
     description: "Plain buttermilk rusks",
     ingredients: "Flour, sugar, eggs, butter",
@@ -41,7 +36,7 @@ const products: CartItem[] = [
     id: 4,
     name: "Buttermilk Rusks with Cranberries",
     price: 18.0,
-    imageUrl: cranberriesButtermilk,
+    imageUrl: "/images/cranberries-buttermilk.png",
     quantity: 1,
     description: "Contains cranberries",
     ingredients: "Flour, sugar, eggs, cranberries, butter",
