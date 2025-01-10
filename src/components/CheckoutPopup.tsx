@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useForm, Controller, FieldValues } from "react-hook-form";
 import { useCart } from '../context/CartContext';
 import { notify } from './ToastNotification';
 import sendEmail from '../services/emailService';
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 
 interface CheckoutPopupProps {
     onClose: () => void;
@@ -9,42 +12,14 @@ interface CheckoutPopupProps {
 
 const CheckoutPopup: React.FC<CheckoutPopupProps> = ({ onClose }) => {
     const { cartItems, clearCart, getTotalPrice } = useCart();
-    const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
-    const [email, setEmail] = useState('');
+    const { control, handleSubmit, formState: { errors } } = useForm();
     const [isLoading, setIsLoading] = useState(false);
 
-    const validateEmail = (email: string) => {
-        const re = /\S+@\S+\.\S+/;
-        return re.test(email);
-    };
-
-    const validatePhone = (phone: string) => {
-        const re = /^\d{10}$/; // Adjust as needed for your phone format
-        return re.test(phone);
-    };
-
-    const handleCheckout = async (e: React.FormEvent) => {
-        e.preventDefault();
-
-        if (!name || !phone || !email) {
-            notify("Please fill in all fields.");
-            return;
-        }
-
-        if (!validateEmail(email)) {
-            notify("Please enter a valid email address.");
-            return;
-        }
-
-        if (!validatePhone(phone)) {
-            notify("Please enter a valid phone number.");
-            return;
-        }
-
+    const onSubmit = async (data: FieldValues) => {
         const emailDetails = {
-            email: email,
-            name: name,
+            email: data.email as string,
+            name: data.name as string,
+            phone: data.phone as string,
             orderDetails: cartItems,
             total: getTotalPrice().toFixed(2),
         };
@@ -57,9 +32,6 @@ const CheckoutPopup: React.FC<CheckoutPopupProps> = ({ onClose }) => {
             await sendEmail(emailDetails);
             notify("Thank you for your purchase! An email confirmation has been sent.");
             clearCart();
-            setName('');
-            setPhone('');
-            setEmail('');
             onClose();
         } catch (error) {
             notify("There was an issue sending the confirmation email. Please try again.");
@@ -70,39 +42,71 @@ const CheckoutPopup: React.FC<CheckoutPopupProps> = ({ onClose }) => {
     };
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 p-8 checkout-popup-container">
+            <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full my-auto overflow-hidden">
                 <h2 className="text-2xl font-bold mb-6 text-center text-bakery-brown">Complete Your Checkout</h2>
-                <form onSubmit={handleCheckout}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">Name:</label>
-                        <input 
-                            type="text" 
-                            value={name} 
-                            onChange={(e) => setName(e.target.value)} 
-                            required 
-                            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                            Name:<span className="text-red-500">*</span>
+                        </label>
+                        <Controller
+                            name="name"
+                            control={control}
+                            defaultValue=""
+                            rules={{ required: "Name is required" }}
+                            render={({ field }) => (
+                                <input 
+                                    {...field}
+                                    type="text" 
+                                    className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                />
+                            )}
                         />
+                        {errors.name && <p className="text-red-500 text-xs italic">{errors.name.message as string}</p>}
                     </div>
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">Phone Number:</label>
-                        <input 
-                            type="tel" 
-                            value={phone} 
-                            onChange={(e) => setPhone(e.target.value)} 
-                            required 
-                            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                            Phone Number:<span className="text-red-500">*</span>
+                        </label>
+                        <Controller
+                            name="phone"
+                            control={control}
+                            defaultValue=""
+                            rules={{ required: "Phone number is required" }}
+                            render={({ field }) => (
+                                <PhoneInput
+                                    {...field}
+                                    className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                />
+                            )}
                         />
+                        {errors.phone && <p className="text-red-500 text-xs italic">{errors.phone.message as string}</p>}
                     </div>
                     <div className="mb-6">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">Email:</label>
-                        <input 
-                            type="email" 
-                            value={email} 
-                            onChange={(e) => setEmail(e.target.value)} 
-                            required 
-                            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                            Email:<span className="text-red-500">*</span>
+                        </label>
+                        <Controller 
+                            name="email" 
+                            control={control} 
+                            defaultValue="" 
+                            rules={{
+                                required: "Email is required",
+                                pattern: {
+                                    value: /\S+@\S+\.\S+/,
+                                    message: "Invalid email address"
+                                }
+                            }}
+                            render={({ field }) => (
+                                <input 
+                                    {...field}
+                                    type="email" 
+                                    className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                />
+                            )}
                         />
+                        {errors.email && <p className="text-red-500 text-xs italic">{errors.email.message as string}</p>}
                     </div>
                     <div className="flex items-center justify-between">
                         <button 

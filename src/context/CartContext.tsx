@@ -8,7 +8,11 @@ export interface CartItem {
     price: number;
     imageUrl: string;
     quantity: number;
+    description: string;
+    ingredients: string;
+    allergens: string;
 }
+
 
 export type CartContextType = {
     cartItems: CartItem[];
