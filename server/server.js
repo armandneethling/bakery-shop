@@ -18,21 +18,31 @@ app.post('/api/send-email', async (req, res) => {
         'Content-Type': 'application/json',
         'api-key': apiKey,
     };
-    const body = {
-        to: [
-            { email: emailDetails.email, name: emailDetails.name }, // Client's email
-            { email: 'homebakedrusks@gmail.com', name: 'Your Bakery' } // Company's email
-        ],
-        sender: { email: 'homebakedrusks@gmail.com', name: 'Your Bakery' },
+
+    const clientEmailBody = {
+        to: [{ email: emailDetails.email, name: emailDetails.name }],
+        sender: { email: 'homebakedrusks@gmail.com', name: 'HomeBaked Rusks' },
         subject: 'Order Confirmation',
         htmlContent: `<p>Hello ${emailDetails.name},</p><p>Thank you for your order!</p><p>Order Details:</p><ul>${emailDetails.orderDetails.map(item => `<li>${item.name}: ${item.quantity} x R${item.price}</li>`).join('')}</ul><p>Total: R${emailDetails.total}</p>`,
     };
 
+    const companyEmailBody = {
+        to: [{ email: 'homebakedrusks@gmail.com', name: 'HomeBaked Rusks' }],
+        sender: { email: 'homebakedrusks@gmail.com', name: 'HomeBaked Rusks' },
+        subject: 'New Order Received',
+        htmlContent: `<p>New order received from ${emailDetails.name}.</p><p>Order Details:</p><ul>${emailDetails.orderDetails.map(item => `<li>${item.name}: ${item.quantity} x R${item.price}</li>`).join('')}</ul><p>Total: R${emailDetails.total}</p><hr><p><strong>Client Information</strong></p><p>Name: ${emailDetails.name}</p><p>Phone number: ${emailDetails.phone}</p><p>Email: ${emailDetails.email}</p>`,
+    };
+
     try {
-        console.log('Sending email with body:', body);
-        const response = await axios.post(url, body, { headers });
-        console.log('Email sent successfully:', response.data);
-        res.status(200).send('Email sent successfully');
+        console.log('Sending client email with body:', clientEmailBody);
+        const clientResponse = await axios.post(url, clientEmailBody, { headers });
+        console.log('Client email sent successfully:', clientResponse.data);
+
+        console.log('Sending company email with body:', companyEmailBody);
+        const companyResponse = await axios.post(url, companyEmailBody, { headers });
+        console.log('Company email sent successfully:', companyResponse.data);
+
+        res.status(200).send('Emails sent successfully');
     } catch (err) {
         console.error('Error sending email:', err.response ? err.response.data : err.message);
         res.status(500).send('Error sending email');

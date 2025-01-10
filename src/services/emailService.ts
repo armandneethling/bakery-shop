@@ -3,6 +3,7 @@ import axios from 'axios';
 interface EmailDetails {
     email: string;
     name: string;
+    phone: string;
     orderDetails: Array<{
         name: string;
         quantity: number;
