@@ -65,7 +65,7 @@ export const sendContactEmail = async (emailDetails: ContactDetails): Promise<vo
 };
 
 const sendEmail = async (emailDetails: EmailDetails): Promise<void> => {
-    const url = `${BASE_URL}/send-email`;
+    const url = `${BASE_URL}/send-checkout-email`;
     const headers = {
         'Content-Type': 'application/json',
     };
