@@ -1,8 +1,8 @@
-const axios = require('axios');
-const dotenv = require('dotenv');
+import axios from 'axios';
+import dotenv from 'dotenv';
 dotenv.config();
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', 'https://bakery-shop-1p9qfucnm-armandneethlings-projects.vercel.app');
     res.setHeader('Access-Control-Allow-Methods', 'POST');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -11,6 +11,8 @@ module.exports = async (req, res) => {
     console.log('Received cake order email details:', emailDetails);
 
     const apiKey = process.env.SENDINBLUE_API_KEY;
+    console.log('Sendinblue API Key:', apiKey);
+
     const url = 'https://api.sendinblue.com/v3/smtp/email';
     const headers = {
         'Content-Type': 'application/json',
