@@ -233,12 +233,12 @@ body {
 
 /* Contact Us Page Styles */
 .contact-us-container {
-  @apply pt-28 pb-32;
+  @apply pt-28 pb-48;
 }
 
 /* Cake Ordering Form Styles */
 .cake-order-container{
-  @apply pt-28 pb-32 px-4;
+  @apply pt-28 pb-48;
 }
 
 .order-cake-section {
