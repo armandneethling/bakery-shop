@@ -28,7 +28,7 @@ export default async (req, res) => {
 
     const companyEmailBody = {
         to: [{ email: 'homebakedrusks@gmail.com', name: 'HomeBaked Rusks' }],
-        sender: { email: emailDetails.email, name: emailDetails.name },
+        sender: { email: 'homebakedrusks@gmail.com', name: 'HomeBaked Rusks' },
         subject: 'New Order Received',
         htmlContent: `<p>New order received from ${emailDetails.name}.</p><hr><p><strong>Client Information</strong></p><p>Name: ${emailDetails.name}</p><p>Phone number: ${emailDetails.phone}</p><p>Email: ${emailDetails.email}</p><hr><p><strong>Order Details</strong></p><ul>${emailDetails.orderDetails.map(item => `<li>${item.name} (Quantity: ${item.quantity}, Price: ${item.price})</li>`).join('')}</ul><p>Total: ${emailDetails.total}</p>`,
     };
