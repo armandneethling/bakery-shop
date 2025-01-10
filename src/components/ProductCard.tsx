@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CartItem } from '../context/CartContext';
 import ProductModal from './ProductModal';
-import { HiOutlineSearch } from 'react-icons/hi'; 
+import { HiOutlineSearch } from 'react-icons/hi';
 
 interface Product {
     id: number;
@@ -19,7 +19,11 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
-    const [isModalOpen, setIsModalOpen] = useState(false); 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const formatCurrency = (value: number) => {
+        return `R${value.toFixed(2)} per pack`;
+    };
 
     const handleAddToCart = () => {
         const item: CartItem = { ...product, quantity: 1 };
@@ -48,7 +52,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
                 </div>
                 <div className="p-4">
                     <h3 className="product-name text-xl font-semibold">{product.name}</h3>
-                    <p className="product-price text-gray-700">R{product.price}</p>
+                    <p className="product-price text-gray-700">{formatCurrency(product.price)}</p>
                     <button className="btn btn-primary mt-4" onClick={handleAddToCart}>Add to Cart</button>
                 </div>
             </div>
