@@ -50,7 +50,6 @@ app.post('/api/send-cake-order-email', async (req, res) => {
     }
 });
 
-
 // Endpoint for Contact Me Form
 app.post('/api/send-contact-email', async (req, res) => {
     const emailDetails = req.body;
@@ -95,7 +94,6 @@ app.post('/api/send-contact-email', async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-}); 
+module.exports = (req, res) => {
+    app(req, res);
+};
