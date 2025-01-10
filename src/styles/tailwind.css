@@ -173,7 +173,7 @@ body {
 }
 
 .about-us-page {
-  @apply bg-bakery-light-pink text-bakery-brown;
+  @apply pb-20 bg-bakery-light-pink text-bakery-brown;
 }
 
 .about-us-page .intro {
@@ -199,12 +199,12 @@ body {
 
 /* Product Modal Styles */
 .product-modal-container {
-  @apply pt-8 pb-14;
+  @apply pt-10 pb-12;
 }
 
 /* Product Page Styles */
 .product-page-container {
-  @apply pt-28 pb-32 px-4;
+  @apply pt-28 pb-48;
 }
 
 .product-card {
@@ -233,7 +233,7 @@ body {
 
 /* Contact Us Page Styles */
 .contact-us-container {
-  @apply pt-28 pb-32 px-4;
+  @apply pt-28 pb-32;
 }
 
 /* Cake Ordering Form Styles */
@@ -319,7 +319,7 @@ body {
 
 /* Checkout Popup Styles */
 .checkout-popup-container {
-  @apply pb-32;
+  @apply pb-56;
 }
 
 /* Custom Link Styles */
@@ -343,7 +343,7 @@ body {
 
 /* Cart Page Styles */
 .cart-page-container {
-  @apply pt-32 pb-24;
+  @apply pt-32 pb-48;
 }
 
 .cart-list-container {
@@ -410,4 +410,5 @@ body {
 .footer .footer-contact {
   @apply text-center md:text-left;
 }
+
 

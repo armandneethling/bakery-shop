@@ -31,7 +31,7 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
             onClick={onClose}
         >
             <motion.div 
-                className="relative bg-white p-3 rounded-lg shadow-lg max-w-xs w-full max-h-[calc(100vh-40px)] overflow-y-auto" 
+                className="relative bg-white p-3 rounded-lg shadow-lg w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 max-h-[calc(100vh-40px)] overflow-y-auto" 
                 onClick={(e) => e.stopPropagation()}
             >
                 <button 
