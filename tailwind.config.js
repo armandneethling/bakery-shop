@@ -8,6 +8,7 @@ module.exports = {
         'bakery-brown': '#7B4B3A',
         'bakery-cream': '#F5E5D7',
         'bakery-yellow': '#F9EBAE',
+        'bakery-light-pink': '#FCD9D9',
         'red-purple': '#ec0c74',
         'jasmine': '#f9da86',
         'red-velvet': '#641728',

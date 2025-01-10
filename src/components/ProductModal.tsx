@@ -22,30 +22,16 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
         }).format(value);
     };
 
-    const modalBackgroundStyle: React.CSSProperties = {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        zIndex: 50,
-        padding: '40px', // Add padding to prevent overlap with header and footer
-    };
-
     return (
         <motion.div 
-            style={modalBackgroundStyle}
+            className="product-modal-container fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
         >
             <motion.div 
-                className="modal-content" // Apply custom class name
+                className="relative bg-white p-3 rounded-lg shadow-lg max-w-xs w-full max-h-[calc(100vh-40px)] overflow-y-auto" 
                 onClick={(e) => e.stopPropagation()}
             >
                 <button 
@@ -54,9 +40,9 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
                 >
                     <HiOutlineX size={24} />
                 </button>
-                <h2 className="text-2xl font-semibold text-bakery-brown mb-4">{product.name}</h2>
-                <img src={product.imageUrl} alt={product.name} className="w-full h-48 object-cover rounded-lg mb-2 shadow-md" />
-                <p className="text-xl font-bold text-bakery-brown mb-2">{formatCurrency(product.price)}</p>
+                <h2 className="text-xl font-semibold text-bakery-brown mb-4">{product.name}</h2>
+                <img src={product.imageUrl} alt={product.name} className="w-3/4 h-auto object-contain rounded-lg shadow-md mx-auto" />
+                <p className="text-lg font-bold text-bakery-brown mb-2">{formatCurrency(product.price)}</p>
                 <div className="text-sm font-semibold text-gray-700 mb-2">
                     <p className="text-md font-bold mb-1">Ingredients:</p>
                     <p className="text-sm text-bakery-brown">{product.ingredients}</p>

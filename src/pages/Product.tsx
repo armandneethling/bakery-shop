@@ -46,7 +46,7 @@ const Product = () => {
                 >
                     <h3 className="text-2xl font-semibold text-bakery-brown mb-4">Order a Cake</h3>
                     <p className="mb-4">
-                        Fill out a form if you would like to order a custom cake. We will get back to you shortly!
+                        Fill out a form if you would like to get a quote for a custom cake. We will get back to you shortly!
                     </p>
                     <Link to="/order-cake">
                         <motion.button

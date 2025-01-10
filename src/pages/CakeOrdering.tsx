@@ -44,7 +44,7 @@ const CakeOrderingForm = () => {
     };
 
     return (
-        <div className="container mx-auto p-4">
+        <div className="cake-order-container mx-auto p-4">
             <h2 className="text-3xl font-semibold text-bakery-brown mb-6">
                 Order Your Cake
             </h2>

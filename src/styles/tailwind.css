@@ -7,6 +7,7 @@
   --bakery-brown: #7B4B3A;
   --bakery-cream: #F5E5D7;
   --bakery-yellow: #F9EBAE;
+  --bakery-light-pink: #FCD9D9;
   --red-purple: #ec0c74;
   --jasmine: #f9da86;
   --brown-chocolate: #641728;
@@ -166,7 +167,28 @@ body {
   border-radius: 10px;
 }
 
-/* Additional Welcome Message Styles */
+/* Home Page Styles */
+.home-page-container {
+  @apply pb-24 pt-24;
+}
+
+.about-us-page {
+  @apply bg-bakery-light-pink text-bakery-brown;
+}
+
+.about-us-page .intro {
+  @apply bg-bakery-yellow text-bakery-brown py-6 px-8;
+}
+
+.about-us-page .products {
+  @apply bg-white text-bakery-brown py-6 px-8;
+}
+
+.about-us-page .contact {
+  @apply bg-bakery-light-pink text-bakery-brown py-6 px-8;
+}
+
+/* Welcome Message Styles */
 .welcome-message-container {
   max-width: 600px;
   margin: auto;
@@ -175,9 +197,14 @@ body {
   background: linear-gradient(to right, var(--bakery-yellow), var(--bakery-cream));
 }
 
+/* Product Modal Styles */
+.product-modal-container {
+  @apply pt-8 pb-14;
+}
+
 /* Product Page Styles */
 .product-page-container {
-  @apply pt-28 pb-20 px-4;
+  @apply pt-28 pb-32 px-4;
 }
 
 .product-card {
@@ -204,6 +231,16 @@ body {
   @apply border border-gray-300 rounded px-2 py-1 text-center w-16;
 }
 
+/* Contact Us Page Styles */
+.contact-us-container {
+  @apply pt-28 pb-32 px-4;
+}
+
+/* Cake Ordering Form Styles */
+.cake-order-container{
+  @apply pt-28 pb-32 px-4;
+}
+
 .order-cake-section {
   @apply mt-4 p-6 bg-white/80 rounded-lg shadow-md mx-auto w-full max-w-3xl;
   max-width: 800px;
@@ -220,19 +257,6 @@ body {
 
 .order-cake-section .btn {
   @apply mt-4 bg-bakery-yellow text-bakery-brown hover:bg-yellow-300 transition duration-300;
-}
-
-/* Product Modal Styles */
-.modal-content {
-  position: relative;
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  width: 100%;
-  max-height: calc(100vh - 80px);
-  overflow-y: auto;
 }
 
 /* Mangnifying Glass Styles */
@@ -293,9 +317,33 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Checkout Popup Styles */
+.checkout-popup-container {
+  @apply pb-32;
+}
+
+/* Custom Link Styles */
+.cart-location-link {
+  text-decoration: none;
+  color: var(--bakery-brown);
+  font-weight: bold;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.cart-location-link:hover {
+  color: var(--van-dyke-brown);
+  transform: scale(1.05);
+}
+
+.cart-location-link:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(123, 75, 58, 0.5);
+}
+
+
 /* Cart Page Styles */
 .cart-page-container {
-  @apply pt-32 pb-20;
+  @apply pt-32 pb-24;
 }
 
 .cart-list-container {
