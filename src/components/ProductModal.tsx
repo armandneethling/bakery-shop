@@ -31,58 +31,46 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
         zIndex: 50,
-    };
-
-    const modalContentStyle: React.CSSProperties = {
-        position: 'relative',
-        backgroundColor: 'white',
-        padding: '2rem',
-        borderRadius: '0.5rem',
-        boxShadow: '0 10px 15px rgba(0, 0, 0, 0.1)',
-        maxWidth: '28rem',
-        width: '100%',
+        padding: '40px', // Add padding to prevent overlap with header and footer
     };
 
     return (
         <motion.div 
-            style={modalBackgroundStyle} 
+            style={modalBackgroundStyle}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
         >
             <motion.div 
-                style={modalContentStyle} 
+                className="modal-content" // Apply custom class name
                 onClick={(e) => e.stopPropagation()}
             >
-                <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-2xl font-semibold text-bakery-brown">{product.name}</h2>
-                    <button onClick={onClose} className="text-red-500 hover:text-red-700 transition duration-300">
-                        <HiOutlineX size={24} />
-                    </button>
-                </div>
-                <img src={product.imageUrl} alt={product.name} className="w-full h-64 object-cover rounded-lg mb-4 shadow-md" />
-                <div className="mt-4">
-                    <p className="text-xl font-bold text-bakery-brown">{formatCurrency(product.price)}</p>
-                </div>
-                <div className="mt-4 text-sm font-semibold text-gray-700">
-                    <p className="text-md font-bold">Ingredients:</p>
+                <button 
+                    onClick={onClose} 
+                    className="absolute top-2 right-2 text-red-500 hover:text-red-700 transition duration-300"
+                >
+                    <HiOutlineX size={24} />
+                </button>
+                <h2 className="text-2xl font-semibold text-bakery-brown mb-4">{product.name}</h2>
+                <img src={product.imageUrl} alt={product.name} className="w-full h-48 object-cover rounded-lg mb-2 shadow-md" />
+                <p className="text-xl font-bold text-bakery-brown mb-2">{formatCurrency(product.price)}</p>
+                <div className="text-sm font-semibold text-gray-700 mb-2">
+                    <p className="text-md font-bold mb-1">Ingredients:</p>
                     <p className="text-sm text-bakery-brown">{product.ingredients}</p>
                 </div>
-                <div className="mt-4 text-sm font-semibold text-gray-700">
-                    <p className="text-md font-bold">Allergens:</p>
+                <div className="text-sm font-semibold text-gray-700 mb-2">
+                    <p className="text-md font-bold mb-1">Allergens:</p>
                     <p className="text-sm text-bakery-brown">{product.allergens}</p>
                 </div>
-                <div className="mt-6">
-                    <button 
-                        onClick={onClose}
-                        className="w-full bg-bakery-yellow text-bakery-brown py-2 px-4 rounded-lg hover:bg-yellow-300 transition-colors duration-300"
-                    >
-                        Close
-                    </button>
-                </div>
+                <button 
+                    onClick={onClose}
+                    className="w-full bg-bakery-yellow text-bakery-brown py-2 px-4 rounded-lg hover:bg-yellow-300 transition-colors duration-300"
+                >
+                    Close
+                </button>
             </motion.div>
         </motion.div>
     );

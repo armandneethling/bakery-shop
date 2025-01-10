@@ -47,18 +47,6 @@ body {
   margin: 0;
 }
 
-.footer {
-  @apply bg-bakery-pink text-bakery-brown py-4 px-6 flex justify-between items-center shadow-lg;
-  bottom: 0;
-  position: fixed;
-  width: 100%;
-  z-index: 50;
-}
-
-.footer .footer-links a {
-  @apply text-bakery-brown hover:text-bakery-yellow transition duration-300;
-}
-
 /* Custom Toast Styles */
 .toast-container .Toastify__toast {
   @apply bg-bakery-yellow text-bakery-brown border-l-4 border-bakery-brown p-4 rounded-lg shadow-lg;
@@ -234,6 +222,34 @@ body {
   @apply mt-4 bg-bakery-yellow text-bakery-brown hover:bg-yellow-300 transition duration-300;
 }
 
+/* Product Modal Styles */
+.modal-content {
+  position: relative;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+}
+
+/* Mangnifying Glass Styles */
+.magnifying-glass-btn {
+  background-color: var(--bakery-yellow);
+  color: var(--bakery-brown);
+  border-radius: 9999px;
+  padding: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
+}
+
+.magnifying-glass-btn:hover {
+  background-color: var(--yellow-400);
+  color: var(--bakery-brown);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
 /* Header Styles */
 .header-container {
@@ -325,3 +341,25 @@ body {
 .cart-checkout-button {
   @apply mt-6 text-center btn btn-primary py-2 px-4 bg-bakery-yellow text-bakery-brown rounded-lg hover:bg-yellow-300 transition-colors duration-300;
 }
+
+/* Footer Styles */
+.footer {
+  @apply bg-bakery-pink text-bakery-brown py-4 px-6 flex justify-between items-center shadow-lg;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 50;
+}
+
+.footer-link {
+  @apply font-semibold text-lg underline transition duration-300 ease-in-out;
+}
+
+.footer-link:hover {
+  @apply text-bakery-yellow;
+}
+
+.footer .footer-contact {
+  @apply text-center md:text-left;
+}
+
