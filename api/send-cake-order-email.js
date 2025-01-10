@@ -44,7 +44,7 @@ export default async (req, res) => {
 
         res.status(200).send('Emails sent successfully');
     } catch (err) {
-        console.error('Error sending email:', err.response ? err.response.data : err.message);
-        res.status(500).send('Error sending email');
+        console.error('Error sending emails:', err.response ? err.response.data : err.message);
+        res.status(500).send('Error sending emails');
     }
 };
