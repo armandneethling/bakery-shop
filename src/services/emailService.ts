@@ -28,7 +28,6 @@ interface ContactDetails {
 
 const BASE_URL = 'https://homebakedrusks.vercel.app/api';
 
-// Function to send cake order email
 export const sendCakeOrderEmail = async (emailDetails: CakeOrderDetails): Promise<void> => {
     const url = `${BASE_URL}/send-cake-order-email`;
     const headers = {
@@ -47,7 +46,6 @@ export const sendCakeOrderEmail = async (emailDetails: CakeOrderDetails): Promis
     }
 };
 
-// Function to send contact email
 export const sendContactEmail = async (emailDetails: ContactDetails): Promise<void> => {
     const url = `${BASE_URL}/send-contact-email`;
     const headers = {
@@ -65,8 +63,6 @@ export const sendContactEmail = async (emailDetails: ContactDetails): Promise<vo
         }
     }
 };
-
-// Function to send checkout email
 export const sendEmail = async (emailDetails: EmailDetails): Promise<void> => {
     const url = `${BASE_URL}/send-checkout-email`;
     const headers = {
