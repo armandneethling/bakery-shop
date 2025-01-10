@@ -8,11 +8,10 @@ app.use(express.json());
 const cors = require('cors');
 app.use(cors());
 
-// Endpoint for Checkout Email
 app.post('/api/send-checkout-email', async (req, res) => {
     const emailDetails = req.body;
     console.log('Received checkout email details:', emailDetails);
-    
+
     const apiKey = process.env.SENDINBLUE_API_KEY;
     const url = 'https://api.sendinblue.com/v3/smtp/email';
     const headers = {

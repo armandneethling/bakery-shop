@@ -11,7 +11,7 @@ app.use(cors());
 app.post('/api/send-contact-email', async (req, res) => {
     const emailDetails = req.body;
     console.log('Received contact email details:', emailDetails);
-    
+
     const apiKey = process.env.SENDINBLUE_API_KEY;
     const url = 'https://api.sendinblue.com/v3/smtp/email';
     const headers = {
