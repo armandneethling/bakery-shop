@@ -40,7 +40,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
                 <div className="image-container relative">
                     <img src={product.imageUrl} alt={product.name} className="product-image w-full h-full object-cover cursor-pointer" />
                     <button 
-                        className="magnifying-glass-btn absolute top-2 right-2" // Apply custom class name
+                        className="magnifying-glass-btn absolute top-2 right-2"
                         onClick={handleOpenModal}
                     >
                         <HiOutlineSearch size={24} />
