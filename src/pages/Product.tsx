@@ -19,7 +19,7 @@ const Product = () => {
             <ToastNotification />
             <div
                 className="absolute top-0 left-0 h-full w-full bg-cover bg-center bg-no-repeat filter blur-md"
-                style={{ backgroundImage: `url('/src/assets/images/bakery-bg.jpg')` }}
+                style={{ backgroundImage: `url('/images/bakery-bg.jpg')` }}
             >
                 <div className="absolute top-0 left-0 h-full w-full bg-black opacity-40"></div>
             </div>

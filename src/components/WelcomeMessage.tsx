@@ -9,7 +9,7 @@ const WelcomeMessage = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full bg-cover bg-center p-6" style={{ backgroundImage: "url('/images/welcome-bg.jpg')" }}>
+        <div className="flex flex-col items-center justify-center w-full h-full bg-cover bg-center p-6">
             <motion.div 
                 className="bg-white bg-opacity-90 p-8 rounded-lg shadow-xl text-center max-w-md welcome-message-container"
                 initial={{ opacity: 0, y: -50 }}
