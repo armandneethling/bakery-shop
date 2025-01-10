@@ -26,9 +26,10 @@ interface ContactDetails {
     message: string;
 }
 
+const BASE_URL = 'https://homebakedrusks.vercel.app/api';
 
 export const sendCakeOrderEmail = async (emailDetails: CakeOrderDetails): Promise<void> => {
-    const url = 'http://localhost:5000/api/send-cake-order-email';
+    const url = `${BASE_URL}/send-cake-order-email`;
     const headers = {
         'Content-Type': 'application/json',
     };
@@ -46,7 +47,7 @@ export const sendCakeOrderEmail = async (emailDetails: CakeOrderDetails): Promis
 };
 
 export const sendContactEmail = async (emailDetails: ContactDetails): Promise<void> => {
-    const url = 'http://localhost:5000/api/send-contact-email';
+    const url = `${BASE_URL}/send-contact-email`;
     const headers = {
         'Content-Type': 'application/json',
     };
@@ -64,7 +65,7 @@ export const sendContactEmail = async (emailDetails: ContactDetails): Promise<vo
 };
 
 const sendEmail = async (emailDetails: EmailDetails): Promise<void> => {
-    const url = 'http://localhost:5000/api/send-email';
+    const url = `${BASE_URL}/send-email`;
     const headers = {
         'Content-Type': 'application/json',
     };
