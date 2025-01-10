@@ -2,7 +2,15 @@ import { motion } from 'framer-motion';
 import { HiOutlineX } from 'react-icons/hi';
 
 interface ProductModalProps {
-    product: { id: number; name: string; price: number; imageUrl: string; description: string };
+    product: {
+        id: number;
+        name: string;
+        price: number;
+        imageUrl: string;
+        description: string;
+        ingredients: string;
+        allergens: string;
+    };
     onClose: () => void;
 }
 
@@ -14,16 +22,39 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
         }).format(value);
     };
 
+    const modalBackgroundStyle: React.CSSProperties = {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+        zIndex: 50,
+    };
+
+    const modalContentStyle: React.CSSProperties = {
+        position: 'relative',
+        backgroundColor: 'white',
+        padding: '2rem',
+        borderRadius: '0.5rem',
+        boxShadow: '0 10px 15px rgba(0, 0, 0, 0.1)',
+        maxWidth: '28rem',
+        width: '100%',
+    };
+
     return (
         <motion.div 
-            className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+            style={modalBackgroundStyle} 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
         >
             <motion.div 
-                className="bg-white rounded-lg p-6 relative max-w-lg w-full shadow-lg"
+                style={modalContentStyle} 
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="flex justify-between items-center mb-4">
@@ -36,6 +67,14 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
                 <div className="mt-4">
                     <p className="text-xl font-bold text-bakery-brown">{formatCurrency(product.price)}</p>
                 </div>
+                <div className="mt-4 text-sm font-semibold text-gray-700">
+                    <p className="text-md font-bold">Ingredients:</p>
+                    <p className="text-sm text-bakery-brown">{product.ingredients}</p>
+                </div>
+                <div className="mt-4 text-sm font-semibold text-gray-700">
+                    <p className="text-md font-bold">Allergens:</p>
+                    <p className="text-sm text-bakery-brown">{product.allergens}</p>
+                </div>
                 <div className="mt-6">
                     <button 
                         onClick={onClose}
@@ -43,10 +82,6 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
                     >
                         Close
                     </button>
-                </div>
-                <div className="mt-4 text-sm font-semibold text-gray-700">
-                    <p className="text-md font-bold">Allergens:</p>
-                    <p className="text-sm text-bakery-brown">{product.description}</p>
                 </div>
             </motion.div>
         </motion.div>

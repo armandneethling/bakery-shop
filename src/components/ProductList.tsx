@@ -8,6 +8,9 @@ const products: CartItem[] = [
     price: 20.0,
     imageUrl: "/src/assets/images/nuts-seeds-buttermilk.png",
     quantity: 1,
+    description: "Contains nuts and seeds",
+    ingredients: "Flour, sugar, eggs, nuts, seeds, butter",
+    allergens: "Nuts",
   },
   {
     id: 2,
@@ -15,6 +18,9 @@ const products: CartItem[] = [
     price: 15.0,
     imageUrl: "/src/assets/images/macadamias-buttermilk.png",
     quantity: 1,
+    description: "Contains macadamias",
+    ingredients: "Flour, sugar, eggs, macadamias, butter",
+    allergens: "Nuts",
   },
   {
     id: 3,
@@ -22,6 +28,9 @@ const products: CartItem[] = [
     price: 25.0,
     imageUrl: "/src/assets/images/plain-buttermilk.png",
     quantity: 1,
+    description: "Plain buttermilk rusks",
+    ingredients: "Flour, sugar, eggs, butter",
+    allergens: "Dairy",
   },
   {
     id: 4,
@@ -29,6 +38,9 @@ const products: CartItem[] = [
     price: 18.0,
     imageUrl: "/src/assets/images/cranberries-buttermilk.png",
     quantity: 1,
+    description: "Contains cranberries",
+    ingredients: "Flour, sugar, eggs, cranberries, butter",
+    allergens: "None",
   },
 ];
 

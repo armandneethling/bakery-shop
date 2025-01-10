@@ -234,6 +234,7 @@ body {
   @apply mt-4 bg-bakery-yellow text-bakery-brown hover:bg-yellow-300 transition duration-300;
 }
 
+
 /* Header Styles */
 .header-container {
   @apply bg-bakery-pink p-4 flex justify-between items-center shadow-md fixed top-0 w-full z-50;

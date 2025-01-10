@@ -15,7 +15,7 @@ const CheckoutPopup: React.FC<CheckoutPopupProps> = ({ onClose }) => {
     const { control, handleSubmit, formState: { errors } } = useForm();
     const [isLoading, setIsLoading] = useState(false);
 
-    const onSubmit = async (data: FieldValues) => {  // Explicitly type 'data'
+    const onSubmit = async (data: FieldValues) => {
         const emailDetails = {
             email: data.email as string,
             name: data.name as string,
@@ -47,7 +47,9 @@ const CheckoutPopup: React.FC<CheckoutPopupProps> = ({ onClose }) => {
                 <h2 className="text-2xl font-bold mb-6 text-center text-bakery-brown">Complete Your Checkout</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                            Name:<span className="text-red-500">*</span>
+                        </label>
                         <Controller
                             name="name"
                             control={control}
@@ -64,7 +66,9 @@ const CheckoutPopup: React.FC<CheckoutPopupProps> = ({ onClose }) => {
                         {errors.name && <p className="text-red-500 text-xs italic">{errors.name.message as string}</p>}
                     </div>
                     <div className="mb-4">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">Phone Number:</label>
+                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                            Phone Number:<span className="text-red-500">*</span>
+                        </label>
                         <Controller
                             name="phone"
                             control={control}
@@ -80,7 +84,9 @@ const CheckoutPopup: React.FC<CheckoutPopupProps> = ({ onClose }) => {
                         {errors.phone && <p className="text-red-500 text-xs italic">{errors.phone.message as string}</p>}
                     </div>
                     <div className="mb-6">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                        <label className="block text-gray-700 text-sm font-bold mb-2">
+                            Email:<span className="text-red-500">*</span>
+                        </label>
                         <Controller 
                             name="email" 
                             control={control} 

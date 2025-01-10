@@ -15,12 +15,8 @@ interface EmailDetails {
 interface CakeOrderDetails {
     email: string;
     name: string;
-    orderDetails: Array<{
-        name: string;
-        quantity: number;
-        price: number;
-    }>;
-    total: string;
+    phone: string;
+    additionalInfo: string;
 }
 
 interface ContactDetails {
@@ -29,6 +25,7 @@ interface ContactDetails {
     phone: string;
     message: string;
 }
+
 
 export const sendCakeOrderEmail = async (emailDetails: CakeOrderDetails): Promise<void> => {
     const url = 'http://localhost:5000/api/send-cake-order-email';

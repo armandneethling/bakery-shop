@@ -10,9 +10,8 @@ import ToastNotification from '../components/ToastNotification';
 const Product = () => {
     const { addToCart } = useCart();
 
-    const handleAddToCart = (product: { id: number; name: string; price: number; imageUrl: string }) => {
-        const item: CartItem = { ...product, quantity: 1 };
-        addToCart(item);
+    const handleAddToCart = (product: CartItem) => {
+        addToCart(product);
     };
 
     return (
@@ -66,3 +65,4 @@ const Product = () => {
 };
 
 export default Product;
+
