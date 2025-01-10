@@ -1,8 +1,8 @@
-const axios = require('axios');
-const dotenv = require('dotenv');
+import axios from 'axios';
+import dotenv from 'dotenv';
 dotenv.config();
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', 'https://bakery-shop-1p9qfucnm-armandneethlings-projects.vercel.app');
     res.setHeader('Access-Control-Allow-Methods', 'POST');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
