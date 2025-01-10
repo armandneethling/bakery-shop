@@ -1,14 +1,12 @@
-const express = require('express');
 const axios = require('axios');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const app = express();
-app.use(express.json());
-const cors = require('cors');
-app.use(cors());
+module.exports = async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://bakery-shop-1p9qfucnm-armandneethlings-projects.vercel.app');
+    res.setHeader('Access-Control-Allow-Methods', 'POST');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-app.post('/api/send-checkout-email', async (req, res) => {
     const emailDetails = req.body;
     console.log('Received checkout email details:', emailDetails);
 
@@ -47,8 +45,4 @@ app.post('/api/send-checkout-email', async (req, res) => {
         console.error('Error sending email:', err.response ? err.response.data : err.message);
         res.status(500).send('Error sending email');
     }
-});
-
-module.exports = (req, res) => {
-    app(req, res);
 };

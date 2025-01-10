@@ -1,14 +1,12 @@
-const express = require('express');
 const axios = require('axios');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const app = express();
-app.use(express.json());
-const cors = require('cors');
-app.use(cors());
+module.exports = async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://bakery-shop-1p9qfucnm-armandneethlings-projects.vercel.app');
+    res.setHeader('Access-Control-Allow-Methods', 'POST');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-app.post('/api/send-contact-email', async (req, res) => {
     const emailDetails = req.body;
     console.log('Received contact email details:', emailDetails);
 
@@ -19,7 +17,6 @@ app.post('/api/send-contact-email', async (req, res) => {
         'api-key': apiKey,
     };
 
-    // Email to Client
     const clientEmailBody = {
         to: [{ email: emailDetails.email, name: emailDetails.name }],
         sender: { email: 'homebakedrusks@gmail.com', name: 'HomeBaked Rusks' },
@@ -27,7 +24,6 @@ app.post('/api/send-contact-email', async (req, res) => {
         htmlContent: `<p>Hello ${emailDetails.name},</p><p>Thanks for reaching out! We'll get in touch with you as soon as possible.</p>`,
     };
 
-    // Email to Company
     const companyEmailBody = {
         to: [{ email: 'homebakedrusks@gmail.com', name: 'HomeBaked Rusks' }],
         sender: { email: emailDetails.email, name: emailDetails.name },
@@ -49,8 +45,4 @@ app.post('/api/send-contact-email', async (req, res) => {
         console.error('Error sending email:', err.response ? err.response.data : err.message);
         res.status(500).send('Error sending email');
     }
-});
-
-module.exports = (req, res) => {
-    app(req, res);
 };
