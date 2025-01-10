@@ -199,7 +199,7 @@ body {
 
 /* Product Modal Styles */
 .product-modal-container {
-  @apply pt-10 pb-12;
+  @apply pt-14 pb-20;
 }
 
 /* Product Page Styles */
