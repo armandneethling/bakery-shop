@@ -356,7 +356,7 @@ body {
 
 /* Cart Page Styles */
 .cart-page-container {
-  @apply pt-32;
+  @apply pt-32 pb-24;
 }
 
 .cart-list-container {
