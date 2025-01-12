@@ -180,6 +180,11 @@ body {
   border-radius: 10px;
 }
 
+/* Home Page Styles */
+.home-page-container {
+  @apply pb-24 pt-24;
+}
+
 .about-us-page {
   @apply pb-20 bg-bakery-light-pink text-bakery-brown;
 }
