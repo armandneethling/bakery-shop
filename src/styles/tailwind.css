@@ -217,7 +217,7 @@ body {
 
 /* Product Page Styles */
 .product-page-container {
-  @apply pt-28 pb-48;
+  @apply pt-28;
 }
 
 .product-card {
