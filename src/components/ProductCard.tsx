@@ -38,22 +38,34 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
         setIsModalOpen(false);
     };
 
+    const mainName = "Buttermilk Rusks";
+    const typeName = product.name.replace(mainName, '').trim() || 'Plain';
+    const extraText = "± 500g";
+
     return (
         <>
-            <div className="product-card bg-white rounded-lg shadow-lg overflow-hidden transition transform hover:scale-105 duration-300">
+            <div 
+                className="product-card bg-white rounded-lg shadow-lg overflow-hidden transition transform hover:scale-105 duration-300 cursor-pointer"
+                onClick={handleOpenModal}
+            >
                 <div className="image-container relative">
-                    <img src={product.imageUrl} alt={product.name} className="product-image w-full h-full object-cover cursor-pointer" />
+                    <img src={product.imageUrl} alt={product.name} className="product-image w-full h-full object-cover" />
                     <button 
                         className="magnifying-glass-btn absolute top-2 right-2"
-                        onClick={handleOpenModal}
+                        onClick={(e) => { e.stopPropagation(); handleOpenModal(); }}
                     >
                         <HiOutlineSearch size={24} />
                     </button>
                 </div>
                 <div className="p-4">
-                    <h3 className="product-name text-xl font-semibold">{product.name}</h3>
+                    <h3 className="product-name text-xl font-semibold">
+                        {mainName}
+                        <br />
+                        {typeName}
+                    </h3>
+                    <span className="text-sm text-gray-500">{extraText}</span>
                     <p className="product-price text-gray-700">{formatCurrency(product.price)}</p>
-                    <button className="btn btn-primary mt-4" onClick={handleAddToCart}>Add to Cart</button>
+                    <button className="btn btn-primary mt-4" onClick={(e) => { e.stopPropagation(); handleAddToCart(); }}>Add to Cart</button>
                 </div>
             </div>
 
