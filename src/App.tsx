@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
@@ -16,13 +15,15 @@ const App: React.FC = () => {
             <Router>
                 <Header />
                 <ToastNotification />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/products" element={<Product />} />
-                    <Route path="/cart" element={<Cart />} />
-                    <Route path="/order-cake" element={<CakeOrdering />} />
-                    <Route path="/contact" element={<ContactUs />} />
-                </Routes>
+                <div className="main-content">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/products" element={<Product />} />
+                        <Route path="/cart" element={<Cart />} />
+                        <Route path="/order-cake" element={<CakeOrdering />} />
+                        <Route path="/contact" element={<ContactUs />} />
+                    </Routes>
+                </div>
                 <Footer />
             </Router>
         </CartProvider>

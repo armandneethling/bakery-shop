@@ -14,7 +14,7 @@ interface ProductModalProps {
     onClose: () => void;
 }
 
-const ProductModal = ({ product, onClose }: ProductModalProps) => {
+const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
     const formatCurrency = (value: number) => {
         return new Intl.NumberFormat('en-ZA', {
             style: 'currency',
@@ -22,16 +22,36 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => {
         }).format(value);
     };
 
+    // Animation variants for the modal
+    const backdropVariants = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 }
+    };
+
+    const modalVariants = {
+        hidden: { y: '-100vh', opacity: 0 },
+        visible: {
+            y: '0',
+            opacity: 1,
+            transition: { delay: 0.2 }
+        }
+    };
+
     return (
         <motion.div 
             className="product-modal-container fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            variants={backdropVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
             onClick={onClose}
         >
             <motion.div 
                 className="relative bg-white p-3 rounded-lg shadow-lg w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 max-h-[calc(100vh-40px)] overflow-y-auto" 
+                variants={modalVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
                 onClick={(e) => e.stopPropagation()}
             >
                 <button 
