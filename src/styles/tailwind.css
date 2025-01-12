@@ -182,7 +182,7 @@ body {
 
 /* Home Page Styles */
 .home-page-container {
-  @apply pb-24 pt-24;
+  @apply pt-24;
 }
 
 .about-us-page {
