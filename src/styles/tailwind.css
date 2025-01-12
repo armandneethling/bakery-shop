@@ -186,7 +186,7 @@ body {
 }
 
 .about-us-page {
-  @apply pb-20 bg-bakery-light-pink text-bakery-brown;
+  @apply bg-bakery-light-pink text-bakery-brown;
 }
 
 .about-us-page .intro {
