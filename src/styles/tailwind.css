@@ -246,12 +246,12 @@ body {
 
 /* Contact Us Page Styles */
 .contact-us-container {
-  @apply pt-28 pb-48;
+  @apply pt-28;
 }
 
 /* Cake Ordering Form Styles */
 .cake-order-container{
-  @apply pt-28 pb-48;
+  @apply pt-28;
 }
 
 .order-cake-section {
@@ -332,7 +332,7 @@ body {
 
 /* Checkout Popup Styles */
 .checkout-popup-container {
-  @apply pb-56;
+  @apply pb-24;
 }
 
 /* Custom Link Styles */
@@ -356,7 +356,7 @@ body {
 
 /* Cart Page Styles */
 .cart-page-container {
-  @apply pt-32 pb-48;
+  @apply pt-32;
 }
 
 .cart-list-container {
