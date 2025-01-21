@@ -202,7 +202,7 @@ strong {
 }
 
 .about-us-page .contact {
-  @apply bg-bakery-light-pink text-bakery-brown py-6 px-8;
+  @apply bg-beige-brown text-van-dyke-brown py-6 px-8;
 }
 
 /* Welcome Message Styles */
@@ -429,7 +429,7 @@ strong {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   overflow: hidden;
-  padding-top: 60px; /* Add padding to account for the header/navbar */
+  padding-top: 60px;
 }
 
 .modal-content {
@@ -444,16 +444,16 @@ strong {
   border: none;
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-  background: linear-gradient(135deg, #f3ec78, #af4261); /* Gradient background */
+  background: linear-gradient(135deg, #f3ec78, #af4261);
   padding: 20px;
   animation: fadeIn 0.5s ease-in-out;
 }
 
 .modal-content img {
-  max-width: 100%; /* Ensure image fits within modal width */
-  max-height: 100%; /* Ensure image fits within modal height */
-  width: auto; /* Maintain aspect ratio */
-  height: auto; /* Maintain aspect ratio */
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
   border-radius: 15px;
   transition: transform 0.3s ease-in-out;
 }
@@ -464,9 +464,9 @@ strong {
 
 .close {
   position: absolute;
-  top: 10px; /* Move close button down */
-  right: 10px; /* Move close button to the right */
-  color: #ff6347; /* Use a distinct color for visibility */
+  top: 10px;
+  right: 10px;
+  color: #ff6347;
   font-size: 35px;
   font-weight: bold;
   cursor: pointer;
@@ -486,6 +486,59 @@ strong {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .carousel-container {
+    padding: 25px;
+  }
+
+  .carousel-image {
+    height: 300px;
+  }
+
+  .slick-next {
+    right: -35px;
+  }
+
+  .slick-prev {
+    left: -35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-container {
+    padding: 25px;
+  }
+
+  .carousel-image {
+    height: 350px;
+  }
+
+  .slick-next, .slick-prev {
+    width: 40px;
+    height: 40px;
+  }
+
+  .slick-next:before, .slick-prev:before {
+    font-size: 24px;
+  }
+
+  .slick-next {
+    right: -30px; 
+  }
+  
+  .slick-prev {
+    left: -30px;
+  }
+
+  .modal-content {
+    width: 90%;
+    max-width: 600px;
+    height: 70%;
+    max-height: 500px;
   }
 }
 
