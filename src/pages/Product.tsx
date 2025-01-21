@@ -6,6 +6,7 @@ import { HiOutlineShoppingCart } from 'react-icons/hi';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import ToastNotification from '../components/ToastNotification';
+import GallerySlideshow from '../components/GallerySlideshow';
 
 const Product = () => {
     const { addToCart } = useCart();
@@ -24,6 +25,7 @@ const Product = () => {
                 <div className="absolute top-0 left-0 h-full w-full bg-black opacity-40"></div>
             </div>
             <div className="relative z-10 flex flex-col space-y-4 product-pag">
+
                 <motion.div
                     className="product-container mx-auto p-6 bg-white/80 rounded-lg shadow-lg hover:shadow-xl w-full max-w-7xl transition-shadow duration-300 overflow-hidden"
                     initial={{ opacity: 0, y: -20 }}
@@ -39,9 +41,18 @@ const Product = () => {
                 </motion.div>
 
                 <motion.div
-                    className="order-cake-section"
+                    className="gallery-slideshow"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, delay: 1 }}
+                >
+                    <GallerySlideshow />
+                </motion.div>
+
+                <motion.div
+                    className="order-cake-section"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }} 
                     transition={{ duration: 1, delay: 0.5 }}
                 >
                     <h3 className="text-2xl font-semibold text-bakery-brown mb-4">Order a Cake</h3>
@@ -65,4 +76,6 @@ const Product = () => {
 };
 
 export default Product;
+
+
 
