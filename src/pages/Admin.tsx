@@ -1,9 +1,8 @@
-// src/pages/Admin.tsx
-import React, { useState } from 'react';  // Added useState here
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { ref, push, set } from 'firebase/database';
-import { auth, database } from '../firebaseConfig';  // Combined imports
+import { auth, database } from '../firebaseConfig';
 
 const Admin: React.FC = () => {
   const navigate = useNavigate();

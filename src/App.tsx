@@ -13,31 +13,35 @@ import Footer from './components/Footer';
 import PrivateRoute from './components/PrivateRoute';
 
 const App: React.FC = () => {
-    return (
-        <CartProvider>
-            <Router>
-                <Header />
-                <ToastNotification />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/products" element={<Product />} />
-                    <Route path="/cart" element={<Cart />} />
-                    <Route path="/order-cake" element={<CakeOrdering />} />
-                    <Route path="/contact" element={<ContactUs />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route
-                      path="/admin"
-                      element={
-                        <PrivateRoute>
-                          <Admin />
-                        </PrivateRoute>
-                      }
-                    />
-                </Routes>
-                <Footer />
-            </Router>
-        </CartProvider>
-    );
+  return (
+    <CartProvider>
+      <Router>
+        <div className="flex flex-col min-h-screen">
+          <Header />
+          <ToastNotification />
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Product />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/order-cake" element={<CakeOrdering />} />
+              <Route path="/contact" element={<ContactUs />} />
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="/admin"
+                element={
+                  <PrivateRoute>
+                    <Admin />
+                  </PrivateRoute>
+                }
+              />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </CartProvider>
+  );
 };
 
 export default App;
