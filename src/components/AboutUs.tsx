@@ -13,7 +13,7 @@ const AboutUs: React.FC = () => {
                 <p className="text-lg">From classic plain buttermilk rusks to innovative flavors like cranberry, we offer a variety of rusks to satisfy every palate.</p>
             </section>
 
-            <section className="contact bg-bakery-light-pink text-bakery-brown py-6 px-8">
+            <section className="contact text-bakery-brown py-6 px-8">
                 <h2 className="text-3xl font-semibold mb-4">Get in Touch</h2>
                 <p className="text-lg">Reach out to us for any inquiries or orders. We’d love to hear from you!</p>
             </section>

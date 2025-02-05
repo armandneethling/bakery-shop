@@ -22,7 +22,7 @@ const CartList = () => {
                                     <img src={item.imageUrl} alt={item.name} className="w-24 h-24 object-cover rounded-lg" />
                                     <div>
                                         <h4 className="text-lg font-bold text-bakery-brown">{item.name}</h4>
-                                        <p className="text-base text-gray-700">Price per unit: R{item.price.toFixed(2)}</p>
+                                        <p className="text-base text-gray-700">Price: R{item.price.toFixed(2)}</p>
                                         <p className="text-base text-gray-700">Quantity: {item.quantity}</p>
                                     </div>
                                 </div>

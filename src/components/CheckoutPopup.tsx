@@ -32,7 +32,7 @@ const CheckoutPopup: React.FC<CheckoutPopupProps> = ({ onClose }) => {
             await sendEmail(emailDetails);
             notify("Thank you for your purchase! An email confirmation has been sent.");
             clearCart();
-            onClose();
+            onClose(); // Close the popup
         } catch (error) {
             notify("There was an issue sending the confirmation email. Please try again.");
             console.error("Email sending error:", error);
