@@ -4,9 +4,9 @@ import { getDatabase } from 'firebase/database';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
+  apiKey: "AIzaSyCzG0iEg_ldZIwqSp4pp_6Q_MG2Vyr5ZbY",
   authDomain: "bakerymanager-40c9e.firebaseapp.com",
-  databaseURL: "https://bakerymanager-40c9e-default-rtdb.firebaseio.com",
+  databaseURL: "https://bakerymanager-40c9e-default-rtdb.europe-west1.firebasedatabase.app/",
   projectId: "bakerymanager-40c9e",
   storageBucket: "bakerymanager-40c9e.appspot.com",
   messagingSenderId: "671517362545",

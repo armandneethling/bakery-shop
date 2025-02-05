@@ -7,7 +7,6 @@ const Footer = () => (
     </div>
     <div className="footer-contact">
       <p className="text-sm font-semibold">HomeBaked Rusks</p>
-      <p className="text-sm">Address: The Highlands 32, Barney Street, Broadwood, Port Elizabeth</p>
       <p className="text-sm">Phone: +27 83 409 5454</p>
       <p className="text-sm">Email: homebakedrusks@gmail.com</p>
     </div>
