@@ -5,10 +5,13 @@ import Home from './pages/Home';
 import Cart from './pages/Cart';
 import Product from './pages/Product';
 import CakeOrdering from './pages/CakeOrdering';
+import ContactUs from './pages/ContactUs';
+import Login from './pages/Login';
+import Admin from './pages/Admin';
 import { CartProvider } from './context/CartContext';
 import ToastNotification from './components/ToastNotification';
-import ContactUs from './pages/ContactUs';
 import Footer from './components/Footer';
+import PrivateRoute from './components/PrivateRoute';
 
 const App: React.FC = () => {
     return (
@@ -22,6 +25,15 @@ const App: React.FC = () => {
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/order-cake" element={<CakeOrdering />} />
                     <Route path="/contact" element={<ContactUs />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route
+                      path="/admin"
+                      element={
+                        <PrivateRoute>
+                          <Admin />
+                        </PrivateRoute>
+                      }
+                    />
                 </Routes>
                 <Footer />
             </Router>
