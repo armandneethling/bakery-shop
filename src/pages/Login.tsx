@@ -1,9 +1,7 @@
-// src/pages/Login.tsx
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebaseConfig';
+import { auth } from '../firebaseConfig.js'
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
